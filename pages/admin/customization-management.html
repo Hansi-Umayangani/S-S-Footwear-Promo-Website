@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S&S Footwear - Admin Login</title>
+  <link rel="stylesheet" href="../../css/admin-customization-management.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header -->
+<header class="navbar">
+    <div class="logo">
+        S&S FOOTWEAR
+        <img src="../../assets/images/Brand_Logo.png" alt="Brand Logo" class="brand-logo">
+    </div>
+
+<!-- Right side: nav links + user icon -->
+  <div class="nav-right">
+    <nav class="nav-links" id="nav-menu">
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Customization</a>
+        <a href="#">Reviews</a>
+        <a href="#">Contact Us</a>
+    </nav>
+
+    <!-- User Icon -->
+    <div class="user-menu">
+        <img src="../../assets/icons/Header-Footer_Icons/user.png" alt="User" class="user-icon">
+        <div class="dropdown">
+          <a href="#" class="login-link">
+              <img src="../../assets/icons/Header-Footer_Icons/log-in.png" alt="Login" class="login-icon"> LOGIN
+          </a>
+        </div>
+    </div>
+</div>
+
+<div class="menu-toggle" id="menu-toggle">☰</div>
+</header>
+
+<main class="admin-dashboard">
+  <h1 class="dashboard-title">Admin Dashboard</h1>
+
+  <!-- Navigation buttons -->
+  <div class="admin-nav">
+    <button>Product Management</button>
+    <button>Customer Reviews</button>
+    <button>Customization Requests</button>
+  </div>
+
+  <!-- Requests Section -->
+<section class="requests">
+  <!-- Main Title -->
+  <h2>Customer Customization Requests</h2>
+
+  <!-- Filter Panel -->
+  <div class="requests-filters">
+    <button>Pending Requests</button>
+    <button>Reviewed Requests</button>
+  </div>
+
+  <!-- Table Wrapper for Scroll -->
+  <div class="requests-table-wrapper">
+    <table class="requests-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Customer Name</th>
+          <th>Product Type</th>
+          <th>Contact Details</th>
+          <th>Request</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2024-07-20</td>
+          <td>Alice Wonderland</td>
+          <td>Shoes</td>
+          <td>
+            alice@example.com<br>
+            +1 (123) 456-7890 (Email)
+          </td>
+          <td>Looking for a pair of red high-top sneakers ...</td>
+          <td><span class="status pending">Pending</span></td>
+          <td class="actions">
+            <button class="edit"></button>
+            <button class="delete"></button>
+          </td>
+        </tr>
+        <tr>
+          <td>2024-07-15</td>
+          <td>Bob The Builder</td>
+          <td>Sandals</td>
+          <td>
+            bob@example.com<br>
+            +1 (987) 654-3210 (Call)
+          </td>
+          <td>Need durable, waterproof sandals for hiking...</td>
+          <td><span class="status reviewed">Reviewed</span></td>
+          <td class="actions">
+            <button class="edit"></button>
+            <button class="delete"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+
+    <!-- Brand/About -->
+    <div class="footer-about">
+      <div class="brand">
+        <h3>S&S FOOTWEARS</h3>
+        <img src="../../assets/images/Brand_Logo.png" alt="S&S Logo">
+      </div>
+      <p>
+        Crafted With Care, Worn With Pride.<br>
+        Your Journey Matters To Us.<br>
+        We are Honored To Be Part Of Your Walk.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Customization</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h4>Contact Info</h4>
+      <p>
+        <img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon">
+        0757356506
+      </p>
+      <p>
+        <img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
+        <a href="mailto:ss01.footwear@gmail.com">ss01.footwear@gmail.com</a>
+      </p>
+      <p>
+        <img src="../../assets/icons/Header-Footer_Icons/location.png" alt="Location" class="contact-icon">
+        S&S Shoes,<br>
+        No.14, Madolompitiya Road,<br>
+        Pallewela.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    © 2025 S&S Footwear. All Rights Reserved.
+  </div>
+</footer>
+
+</body>
+</html>
