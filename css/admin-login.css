@@ -91,6 +91,11 @@ img {
   font-size: clamp(0.85rem, 1.5vw, 1.2rem);
 }
 
+.nav-links a.active {
+    color: #ff7f50;
+    font-weight: bold;
+}
+
 .nav-links a:hover {
   color: #d2a06a;
 }
@@ -137,9 +142,16 @@ img {
   font-family: 'Open Sans', sans-serif;
 }
 
+.user-menu.active {
+    background-color: rgba(255, 127, 80, 0.2);
+    border-radius: 5px;
+}
+
+
 .user-menu .dropdown a:hover {
   background-color: #d2a06a;
   color: #4b2e1e;
+  border-radius: 5px;
 }
 
 .login-icon {
