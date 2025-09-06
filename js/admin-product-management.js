@@ -105,4 +105,71 @@ function initCloudinary() {
 
   uploadBox.addEventListener("click", () => widget.open());
 }
+let editProductId = null;
+// ----------------------- FORM SUBMISSION -----------------------
+function initProductForm() {
+  if (!productForm) return;
+
+  productForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = productName.value.trim();
+    const cat = category.value.trim();
+    const priceValue = parseFloat(price.value);
+    const desc = description.value.trim();
+
+    if (!name || !cat || !desc || isNaN(priceValue) || priceValue < 0) {
+  alert("Please fill all fields correctly.");
+  return;
+}
+
+// If adding a new product (not editing), image is required
+if (!editProductId && !uploadedImageURL) {
+  alert("Please upload a product image.");
+  return;
+}
+
+try {
+  if (editProductId) {
+    // ---------------- UPDATE EXISTING PRODUCT ----------------
+    await setDoc(doc(db, "products", editProductId), {
+      name,
+      category: cat,
+      price: priceValue,
+      description: desc,
+      imageURL: uploadedImageURL,
+      createdAt: serverTimestamp(),
+    });
+
+    alert("Product updated successfully!");
+    editProductId = null; // Reset edit state
+    productForm.querySelector(".submit-btn").textContent = "ADD PRODUCT"; // Back to add mode
+  } else {
+    // ---------------- ADD NEW PRODUCT ----------------
+    await addDoc(productsCollection, {
+      name,
+      category: cat,
+      price: priceValue,
+      description: desc,
+      imageURL: uploadedImageURL,
+      createdAt: serverTimestamp(),
+    });
+
+    alert("Product added successfully!");
+  }
+
+  // Reset form
+  productForm.reset();
+  previewImg.src = "";
+  imagePreview.style.display = "none";
+  uploadedImageURL = "";
+
+  // Reload table
+  loadProducts();
+} catch (err) {
+  console.error("Error saving product:", err);
+  alert("Failed to save product. Check console for details.");
+}
+});
+}
 
