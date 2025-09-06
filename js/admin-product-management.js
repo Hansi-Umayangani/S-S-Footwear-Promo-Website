@@ -172,4 +172,76 @@ try {
 }
 });
 }
+// ----------------------- LOAD EXISTING PRODUCTS -----------------------
+async function loadProducts() {
+  if (!productsTbody) return;
+  productsTbody.innerHTML = ""; // Clear table
+
+  try {
+    const snapshot = await getDocs(productsCollection);
+    snapshot.forEach((docSnap) => {
+      const product = docSnap.data();
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td class="product-image-cell">
+          <div class="photo-box">
+            <img src="${product.imageURL}" alt="${product.name}">
+          </div>
+        </td>
+        <td>${product.name}</td>
+        <td>${product.category}</td>
+        <td>Rs.${product.price}</td>
+        <td class="actions">
+          <button class="edit" data-id="${docSnap.id}"></button>
+          <button class="delete" data-id="${docSnap.id}"></button>
+        </td>
+      `;
+
+      // ---------------- DELETE ----------------
+      tr.querySelector(".delete").addEventListener("click", async () => {
+        if (confirm(`Are you sure you want to delete "${product.name}"?`)) {
+          await deleteDoc(doc(db, "products", docSnap.id));
+          loadProducts();
+        }
+      });
+
+      // ---------------- EDIT ----------------
+      tr.querySelector(".edit").addEventListener("click", () => {
+        editProductId = docSnap.id; // Track editing product
+
+        // Populate form fields
+        productName.value = product.name;
+        category.value = product.category;
+        price.value = product.price;
+        description.value = product.description;
+        previewImg.src = product.imageURL;
+        imagePreview.style.display = "block";
+        uploadedImageURL = product.imageURL;
+
+        // Change button text
+        productForm.querySelector(".submit-btn").textContent = "UPDATE PRODUCT";
+
+        // Scroll to form (optional)
+        productForm.scrollIntoView({ behavior: "smooth" });
+      });
+
+      productsTbody.appendChild(tr);
+    });
+  } catch (err) {
+    console.error("Error loading products:", err);
+  }
+}
+
+
+// ----------------------- INITIALIZE -----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Admin Product Management JS Loaded");
+
+  initAuth();
+  initDropdown();
+  highlightNav();
+  initCloudinary();
+  initProductForm();
+});
 
