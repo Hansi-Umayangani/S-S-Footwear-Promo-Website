@@ -1,7 +1,7 @@
 import { auth } from "./firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
-// Elements
+// ----------------------- DOM ELEMENTS -----------------------
 const loginOption = document.getElementById("loginOption");
 const logoutOption = document.getElementById("logoutOption");
 const userMenu = document.getElementById("userMenu");
@@ -62,4 +62,33 @@ document.addEventListener("DOMContentLoaded", () => {
     btnCustomization.classList.add("active");
   }
 });
+
+// ----------------------- CLOUDINARY WIDGET -----------------------
+function initCloudinary() {
+  if (!window.cloudinary || !uploadBox) {
+    console.error("Cloudinary widget not loaded or uploadBox missing.");
+    return;
+  }
+
+  const widget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: "dvcmr9ojz",
+      uploadPreset: "unsigned_preset",
+      multiple: false,
+      folder: "products",
+    },
+    (err, result) => {
+      if (err) {
+        console.error("Cloudinary upload error:", err);
+      } else if (result && result.event === "success") {
+        uploadedImageURL = result.info.secure_url;
+        previewImg.src = uploadedImageURL;
+        imagePreview.style.display = "block";
+        console.log("Uploaded Image URL:", uploadedImageURL);
+      }
+    }
+  );
+
+  uploadBox.addEventListener("click", () => widget.open());
+}
 
