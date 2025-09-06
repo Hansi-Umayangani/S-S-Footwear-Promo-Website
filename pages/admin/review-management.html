@@ -27,7 +27,7 @@
     </nav>
 
     <!-- User Icon -->
-    <div class="user-menu">
+    <div class="user-menu" id="userMenu">
         <img src="../../assets/icons/Header-Footer_Icons/user.png" alt="User" class="user-icon">
         <div class="dropdown" id="userDropdown">
         <a href="#" id="loginOption">
@@ -48,9 +48,10 @@
 
   <!-- Navigation buttons -->
   <div class="admin-nav">
-    <button id="btn-products" onclick="location.href='product-managemnt.html'">Product Management</button>
-    <button id="btn-reviews" onclick="location.href='review-managemnt.html'">Customer Reviews</button>
-    <button id="btn-customization" onclick="location.href='customization-managemnt.html'">Customization Requests</button>
+    <button id="btn-products" onclick="location.href='/pages/admin/product-management.html'">Product Management</button>
+    <button id="btn-reviews" onclick="location.href='/pages/admin/review-management.html'">Customer Reviews</button>
+    <button id="btn-customization" onclick="location.href='/pages/admin/customization-management.html'">Customization Requests</button>
+
   </div>
 
   <!-- Customer Review Management Section -->
@@ -216,6 +217,8 @@
     © 2025 S&S Footwear. All Rights Reserved.
   </div>
 </footer>
+
+<script type="module" src="/js/admin-review-management.js"></script>
 
 </body>
 </html>
