@@ -57,3 +57,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ------------------- PRODUCTS LOGIC -------------------
+const db = getFirestore();
+const productsCollection = collection(db, "products");
+
+const productGrid = document.getElementById("product-grid");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const searchInput = document.querySelector(".search-bar input");
+
+let allProducts = [];
+let currentFilter = "all";
+let currentSearch = "";
+
+// Display products with current filter & search
+function displayProducts(products) {
+  productGrid.innerHTML = "";
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = currentFilter === "all" || p.category === currentFilter;
+    const matchesSearch = 
+      p.category.toLowerCase().includes(currentSearch.toLowerCase()) ||
+      p.name.toLowerCase().includes(currentSearch.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+
+  if (filteredProducts.length === 0) {
+    productGrid.innerHTML = "<p>No products found.</p>";
+    return;
+  }
+
+  filteredProducts.forEach(product => {
+    const card = document.createElement("div");
+    card.classList.add("product-card");
+    card.setAttribute("data-category", product.category);
+
+    card.innerHTML = `
+      <img src="${product.imageURL}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <div class="price">Rs. ${product.price.toFixed(2)}</div>
+      <button class="request-btn">Request Custom</button>
+    `;
+
+    productGrid.appendChild(card);
+  });
+}
