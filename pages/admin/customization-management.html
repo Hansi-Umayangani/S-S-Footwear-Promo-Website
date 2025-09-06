@@ -27,13 +27,16 @@
     </nav>
 
     <!-- User Icon -->
-    <div class="user-menu">
+    <div class="user-menu" id="userMenu">
         <img src="../../assets/icons/Header-Footer_Icons/user.png" alt="User" class="user-icon">
-        <div class="dropdown">
-          <a href="#" class="login-link">
-              <img src="../../assets/icons/Header-Footer_Icons/log-in.png" alt="Login" class="login-icon"> LOGIN
-          </a>
-        </div>
+        <div class="dropdown" id="userDropdown">
+        <a href="#" id="loginOption">
+            <img src="../../assets/icons/Header-Footer_Icons/log-in.png" alt="Login" class="login-icon"> LOGIN
+        </a>
+        <a href="#" id="logoutOption">
+            <img src="../../assets/icons/Header-Footer_Icons/log-in.png" alt="Logout" class="login-icon"> LOGOUT
+        </a>
+      </div>
     </div>
 </div>
 
@@ -45,9 +48,10 @@
 
   <!-- Navigation buttons -->
   <div class="admin-nav">
-    <button>Product Management</button>
-    <button>Customer Reviews</button>
-    <button>Customization Requests</button>
+    <button id="btn-products" onclick="location.href='/pages/admin/product-management.html'">Product Management</button>
+    <button id="btn-reviews" onclick="location.href='/pages/admin/review-management.html'">Customer Reviews</button>
+    <button id="btn-customization" onclick="location.href='/pages/admin/customization-management.html'">Customization Requests</button>
+
   </div>
 
   <!-- Requests Section -->
@@ -171,6 +175,8 @@
     © 2025 S&S Footwear. All Rights Reserved.
   </div>
 </footer>
+
+<script type="module" src="/js/admin-customization-management.js"></script>
 
 </body>
 </html>

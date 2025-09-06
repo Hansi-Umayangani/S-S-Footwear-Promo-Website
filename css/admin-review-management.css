@@ -186,6 +186,10 @@ img {
   background: #8f5c25;
 }
 
+.admin-nav button.active {
+    background: #8f5c25;
+}
+
 /* ---------------- Review Form Section ---------------- */
 .review-management {
   background: #fff; 
