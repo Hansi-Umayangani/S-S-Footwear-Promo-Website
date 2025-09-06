@@ -102,3 +102,37 @@ function displayProducts(products) {
     productGrid.appendChild(card);
   });
 }
+// Filters
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    filterButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    currentFilter = btn.dataset.filter;
+    displayProducts(allProducts);
+  });
+});
+
+// Search bar
+searchInput.addEventListener("input", () => {
+  currentSearch = searchInput.value;
+  displayProducts(allProducts);
+});
+
+// Load products in real-time
+function loadProductsRealtime() {
+  const q = query(productsCollection, orderBy("createdAt", "desc"));
+
+  onSnapshot(q, (snapshot) => {
+    allProducts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    displayProducts(allProducts);
+  }, (error) => {
+    console.error("Error fetching products:", error);
+    productGrid.innerHTML = "<p>Failed to load products.</p>";
+  });
+}
+
+// Initial load
+document.addEventListener("DOMContentLoaded", loadProductsRealtime);
+
+console.log("product.js loaded");
