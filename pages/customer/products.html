@@ -6,6 +6,9 @@
   <title>S&S Footwear</title>
   <link rel="stylesheet" href="../../css/products.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <script type="module" src="/js/products.js"></script>
+  <script type="module" src="/js/admin-product-management.js"></script>
+  <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -17,11 +20,11 @@
       <img src="../../assets/images/Brand_Logo.png" alt="Brand_Logo" class="brand-logo"></div>
     
       <nav class="nav-links" id="nav-menu">
-      <a href="#">Home</a>
-      <a href="#">Products</a>
-      <a href="#">Customization</a>
-      <a href="#">Reviews</a>
-      <a href="#">Contact Us</a>
+      <a href="../customer/home.html">Home</a>
+      <a href="../customer/products.html">Products</a>
+      <a href="../customer/customization.html">Customization</a>
+      <a href="../customer/reviews.html">Reviews</a>
+      <a href="../customer/contact.html">Contact Us</a>
     </nav>
     <div class="menu-toggle" id="menu-toggle">☰</div>
   </header>
@@ -48,38 +51,8 @@
   </div>
 
   <!-- Product Grid -->
-  <div class="product-grid">
-    <div class="product-card" data-category="men-formal">
-      <img src="../../assets/images/Product_Images/Elite_Black_Dress_Shoes.jpg" alt="Elite Black Dress Shoes">
-      <h3>Elite Black Dress Shoes</h3>
-      <p>Sleek black leather formal shoes with perforated details for a modern touch.</p>
-      <div class="price">Rs. 5000.00</div>
-      <button class="request-btn">Request Custom</button>
-    </div>
-
-    <div class="product-card" data-category="men-formal">
-      <img src="../../assets/images/Product_Images/Classic_Mens_Loafers.jpg" alt="Classic Men's Loafers">
-      <h3>Classic Men's Loafers</h3>
-      <p>Sophisticated brown leather loafers for a sharp and timeless formal look.</p>
-      <div class="price">Rs. 4950.00</div>
-      <button class="request-btn">Request Custom</button>
-    </div>
-
-    <div class="product-card" data-category="men-sandals">
-      <img src="../../assets/images/Product_Images/Chic_White_Heels.jpg" alt="Chic White Heels">
-      <h3>Chic White Heels</h3>
-      <p>Stylish white heels with a low block heel, perfect for any occasion.</p>
-      <div class="price">Rs. 2600.00</div>
-      <button class="request-btn">Request Custom</button>
-    </div>
-
-    <div class="product-card" data-category="school-shoes">
-      <img src="../../assets/images/Product_Images/Black_Kids_Velcro_Shoes.jpg" alt="Black Kids' Velcro Shoes">
-      <h3>Black Kids' Velcro Shoess</h3>
-      <p> Durable and comfortable black shoes with easy-to-use velcro straps for kids.</p>
-      <div class="price">Rs. 3500.00</div>
-      <button class="request-btn">Request Custom</button>
-    </div>
+  <div class="product-grid" id="product-grid">
+    <!--products will be dynamically inserted here-->
   </div>
 </section>
 
@@ -105,11 +78,11 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Customization</a></li>
-        <li><a href="#">Reviews</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="../customer/home.html">Home</a></li>
+        <li><a href="../customer/products.html">Products</a></li>
+        <li><a href="../customer/customization.html">Customization</a></li>
+        <li><a href="../customer/reviews.html">Reviews</a></li>
+        <li><a href="../customer/contact.html">Contact</a></li>
       </ul>
     </div>
 
@@ -118,7 +91,7 @@
       <h4>Contact Info</h4>
       <p>
         <img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon">
-        0757356506
+        <a href="tel:0757356506">0757356506</a>
       </p>
       <p>
         <img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
@@ -126,9 +99,11 @@
       </p>
       <p>
         <img src="../../assets/icons/Header-Footer_Icons/location.png" alt="Location" class="contact-icon">
+        <a href="https://maps.app.goo.gl/aLB4kqipQs7XuvLc8/" target="_blank">
         S&S Shoes,<br>
         No.14, Madolompitiya Road,<br>
         Pallewela.
+        </a>
       </p>
     </div>
 
