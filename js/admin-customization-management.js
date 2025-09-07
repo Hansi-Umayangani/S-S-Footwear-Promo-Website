@@ -70,3 +70,46 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchCustomizationRequests();
 });
 
+// ------------------- FETCH CUSTOMIZATION REQUESTS (PART 1: FETCH & RENDER) -------------------
+async function fetchCustomizationRequests() {
+  if (!requestsTableBody) return;
+
+  requestsTableBody.innerHTML = ""; // clear old rows
+
+  try {
+    const q = query(collection(db, "customRequests"), orderBy("timestamp", "desc"));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      requestsTableBody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center; padding:10px;">No requests found.</td>
+        </tr>
+      `;
+      return;
+    }
+
+    querySnapshot.forEach((docSnap) => {
+      const request = docSnap.data();
+      const date = request.timestamp?.toDate().toLocaleDateString() || "";
+
+      const row = document.createElement("tr");
+      row.setAttribute("data-id", docSnap.id);
+
+      row.innerHTML = `
+        <td>${date}</td>
+        <td>${request.customerName || "-"}</td>
+        <td>${request.productType || "-"}</td>
+        <td>${request.emailAddress || "-"}<br>${request.contactNumber || ""} (${request.contactMethod || ""})</td>
+        <td>${request.customDetails || "-"}</td>
+        <td><!-- Status button to be added later --></td>
+        <td class="actions"><!-- Delete button to be added later --></td>
+      `;
+
+      requestsTableBody.appendChild(row);
+    });
+  } catch (err) {
+    console.error("Failed to fetch requests:", err);
+  }
+}
+
