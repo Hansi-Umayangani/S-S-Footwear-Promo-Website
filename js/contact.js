@@ -72,4 +72,49 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
+  // -------- WhatsApp Contact Form Submission --------
+ if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault(); // Prevent page reload
+
+      // Get form values
+      const firstName = document.getElementById("first-name").value.trim();
+      const lastName = document.getElementById("last-name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value.trim();
+
+      // Build structured message (plain text, with line breaks)
+      const whatsappMessage = 
+  "New Contact Form Submission%0A" +
+  "Name: " + firstName + " " + lastName + "%0A" +
+  "Email: " + email + "%0A" +
+  "Phone: " + phone + "%0A" +
+  "Subject: " + subject + "%0A" +
+  "Message: " + message;
+
+      // Encode message for WhatsApp URL
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+
+      // WhatsApp number in international format (no +)
+      const businessNumber = "94753755005";
+
+      // Final WhatsApp URL logic
+      if (/Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent)) {
+        // Mobile
+        window.open(`https://wa.me/94753755005?text=${whatsappMessage}`, "_blank");
+      } else {
+        // Desktop
+        window.open(`https://web.whatsapp.com/send?phone=94753755005&text=${whatsappMessage}`, "_blank");
+      }
+
+      // Open WhatsApp in a new tab/window
+      window.open(whatsappURL, "_blank");
+
+      // Optional: reset form
+      contactForm.reset();
+    });
+  }
 });
