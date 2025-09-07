@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchCustomizationRequests();
 });
 
-// ------------------- FETCH CUSTOMIZATION REQUESTS (PART 1: FETCH & RENDER) -------------------
+// ------------------- FETCH CUSTOMIZATION REQUESTS (FETCH & RENDER) -------------------
 async function fetchCustomizationRequests() {
   if (!requestsTableBody) return;
 
@@ -102,9 +102,43 @@ async function fetchCustomizationRequests() {
         <td>${request.productType || "-"}</td>
         <td>${request.emailAddress || "-"}<br>${request.contactNumber || ""} (${request.contactMethod || ""})</td>
         <td>${request.customDetails || "-"}</td>
-        <td><!-- Status button to be added later --></td>
-        <td class="actions"><!-- Delete button to be added later --></td>
+        <td>
+          <button class="status-btn ${request.status?.toLowerCase() || "pending"}">
+            ${request.status || "Pending"}
+          </button>
+        </td>
+        <td class="actions">
+          <button class="delete" title="Delete">
+            <img src="/assets/icons/trash.png" alt="Delete" class="delete-icon">
+          </button>
+        </td>
       `;
+
+      // Handle status toggle
+      const statusBtn = row.querySelector(".status-btn");
+      statusBtn.addEventListener("click", async () => {
+        let newStatus;
+
+        if (statusBtn.classList.contains("pending")) {
+          newStatus = "Accepted"; 
+        } else {
+          newStatus = "Pending"; 
+        }
+
+        try {
+          await updateDoc(doc(db, "customRequests", docSnap.id), {
+            status: newStatus
+          });
+
+          // Update UI
+          statusBtn.textContent = newStatus;
+          statusBtn.className = "status-btn " + newStatus.toLowerCase();
+        } catch (err) {
+          console.error("Failed to update status:", err);
+        }
+      });
+
+ 
 
       requestsTableBody.appendChild(row);
     });
