@@ -461,7 +461,10 @@ textarea::placeholder {
 
 /* Table headers */
 .products-table th {
-  background: #e28f222f;
+  position: sticky;
+  top: 0; 
+  z-index: 2; 
+  background: #ffdfbb;
   font-weight: bold;
   text-align: center;
 }
