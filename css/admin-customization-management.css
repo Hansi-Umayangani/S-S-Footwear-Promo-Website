@@ -219,32 +219,6 @@ img {
   width: 100%;
 }
 
-/* Filter Button Panel */
-.requests-filters {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.requests-filters button {
-  background: #99662c;
-  color: white;
-  border: none;
-  font-size: 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  width: 180px;
-  height: 60px;
-  text-align: center;
-}
-
-.requests-filters button:hover {
-  background: #BC772E;
-}
-
 /* Table Wrapper for Scroll */
 .requests-table-wrapper {
   width: 100%;
@@ -272,8 +246,11 @@ img {
 }
 
 /* Table Headers */
-.requests-table th {
-  background: #e28f222f;
+.requests-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #ffdfbb; 
   font-weight: bold;
   text-align: center;
 }
@@ -297,13 +274,17 @@ img {
   width: 60px;
 }
 
-/* Status Tags */
-.status {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+/* Status buttons */
+.status-btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 600;
+  cursor: pointer;
   white-space: nowrap;
+  color: #fff;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .status.pending {
@@ -314,6 +295,10 @@ img {
 .status.reviewed {
   background: #c8f7c5;
   color: #155724;
+}
+
+.status-btn:hover {
+  transform: scale(1.05);
 }
 
 /* Actions Column */
@@ -339,8 +324,8 @@ img {
 
 /* Buttons styling */
 .actions button {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border: none;
   border-radius: 50%;
   background-color: #ffebdbe5;
@@ -360,14 +345,6 @@ img {
   transform: scale(1);
 }
 
-/* Specific icons - make sure paths are correct relative to CSS file */
-.actions button.edit {
-  background-image: url("../icons/editing.png");
-}
-
-.actions button.delete {
-  background-image: url("../icons/trash.png");
-}
 
 /* ---------------- Footer ---------------- */
 .footer {
