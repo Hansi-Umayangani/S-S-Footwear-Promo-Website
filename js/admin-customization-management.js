@@ -10,54 +10,54 @@ const userDropdown = document.getElementById("userDropdown");
 const requestsTableBody = document.querySelector(".requests-table tbody");
 const btnPendingFilter = document.querySelector(".requests-filters button:nth-child(1)");
 const btnAcceptedFilter = document.querySelector(".requests-filters button:nth-child(2)");
+// Admin nav buttons
+const btnProducts = document.getElementById("btn-products");
+const btnReviews = document.getElementById("btn-reviews");
+const btnCustomization = document.getElementById("btn-customization");
 
-// Toggle dropdown
-userMenu.addEventListener("click", () => {
-  userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
-});
+// ------------------- DROPDOWN -------------------
+if (userMenu && userDropdown) {
+    userMenu.addEventListener("click", () => {
+    userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
+  });
 
-// Show/hide login/logout based on auth state
+  // Close dropdown if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!userMenu.contains(e.target)) userDropdown.style.display = "none";
+  });
+}
+
+// ------------------- AUTH -------------------
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    loginOption.style.display = "none"; // hide login
-    logoutOption.style.display = "flex"; // show logout
-  } else {
-    loginOption.style.display = "flex"; // show login
-    logoutOption.style.display = "none"; // hide logout
+  if (loginOption && logoutOption) { // check they exist
+    if (user) {
+      loginOption.style.display = "none";
+      logoutOption.style.display = "flex";
+    } else {
+      loginOption.style.display = "flex";
+      logoutOption.style.display = "none";
+    }
   }
 });
 
-// Handle logout
-logoutOption.addEventListener("click", async (e) => {
-  e.preventDefault();
-  try {
-    await signOut(auth);
-    window.location.href = "login.html"; // redirect after logout
-  } catch (error) {
-    console.error("Logout failed:", error.message);
-  }
-});
+// Logout
+if (logoutOption) {
+  logoutOption.addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      await signOut(auth);
+      window.location.href = "login.html";
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+    }
+  });
+}
 
-// Close dropdown if clicked outside
-document.addEventListener("click", (e) => {
-  if (!userMenu.contains(e.target)) {
-    userDropdown.style.display = "none";
-  }
-});
 
-// Wait until DOM is loaded 
-document.addEventListener("DOMContentLoaded", () => { 
-  console.log("JS loaded, URL:", window.location.href);
-
-  // Get admin nav buttons
-  const btnProducts = document.getElementById("btn-products");
-  const btnReviews = document.getElementById("btn-reviews");
-  const btnCustomization = document.getElementById("btn-customization");
-
-  // Get current page from URL
+// ------------------- ADMIN NAV HIGHLIGHT -------------------
+document.addEventListener("DOMContentLoaded", () => {
   const url = window.location.href;
 
-  // Highlight the active button based on the current page
   if (url.includes("product-management.html")) {
     btnProducts.classList.add("active");
   } else if (url.includes("review-management.html")) {
@@ -65,5 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (url.includes("customization-management.html")) {
     btnCustomization.classList.add("active");
   }
+
+  // Fetch requests after DOM is ready
+  fetchCustomizationRequests();
 });
 
