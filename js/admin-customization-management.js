@@ -138,6 +138,20 @@ async function fetchCustomizationRequests() {
         }
       });
 
+      // Attach delete handler
+      row.querySelector(".delete").addEventListener("click", async () => {
+        const confirmDelete = confirm("Are you sure you want to delete this request?");
+        if (!confirmDelete) return;
+
+        try {
+          await deleteDoc(doc(db, "customRequests", docSnap.id));
+          row.remove(); // or re-fetch with fetchCustomizationRequests()
+          console.log("Request deleted:", docSnap.id);
+        } catch (err) {
+          console.error("Failed to delete request:", err);
+        }
+      });
+
  
 
       requestsTableBody.appendChild(row);
