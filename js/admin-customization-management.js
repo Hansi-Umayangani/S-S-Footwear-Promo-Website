@@ -1,11 +1,15 @@
 import { auth } from "./firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { collection, getDocs, query, orderBy, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-// Elements
+// ------------------- DOM ELEMENTS -------------------
 const loginOption = document.getElementById("loginOption");
 const logoutOption = document.getElementById("logoutOption");
 const userMenu = document.getElementById("userMenu");
 const userDropdown = document.getElementById("userDropdown");
+const requestsTableBody = document.querySelector(".requests-table tbody");
+const btnPendingFilter = document.querySelector(".requests-filters button:nth-child(1)");
+const btnAcceptedFilter = document.querySelector(".requests-filters button:nth-child(2)");
 
 // Toggle dropdown
 userMenu.addEventListener("click", () => {
