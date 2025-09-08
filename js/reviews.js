@@ -77,3 +77,32 @@ document.addEventListener("DOMContentLoaded", () => {
     return stars;
   }
 
+  // -------- Render single review --------
+  function renderReviewCard(review) {
+    return `
+      <article class="review-card">
+        <div class="review-header">
+          <div class="quote-icon">“</div>
+          <div class="reviewer-info">
+            <span class="reviewer-name">${review.name}</span>
+            <span class="product-name">${review.product}</span>
+            <span class="review-time">${timeAgo(review.createdAt)}</span>
+          </div>
+          <div class="rating-stars">
+            ${renderStars(review.rating)}
+          </div>
+        </div>
+        <p class="review-text">${review.reviewText}</p>
+        ${
+          review.image 
+            ? `<p class="review-image-link">
+                <a href="${review.image}" target="_blank" rel="noopener noreferrer">
+                  View Image >>>
+                </a>
+              </p>` 
+            : ""
+        }
+      </article>
+    `;
+  }
+
