@@ -74,3 +74,67 @@ const previewImg = document.getElementById("preview-img");
 const submitBtn = reviewForm?.querySelector(".submit-btn"); 
 let uploadedImageURL = "";
 let editingReviewId = null;
+
+// ---------------------- FETCH AND DISPLAY REVIEWS ----------------------
+function loadReviews() {
+  const reviewsRef = collection(db, "reviews");
+  const q = query(reviewsRef, orderBy("createdAt", "desc"));
+
+  onSnapshot(q, (snapshot) => {
+    reviewsTableBody.innerHTML = "";
+
+    snapshot.forEach((docSnap) => {
+      const review = docSnap.data();
+      const id = docSnap.id;
+      const { name, product, rating, reviewText, image, createdAt } = review;
+
+      const dateStr = createdAt?.toDate ? createdAt.toDate().toLocaleString() : "";
+
+      // Build rating stars
+      let starsHTML = "";
+      for (let i = 1; i <= 5; i++) {
+        starsHTML += `<span class="star ${i <= rating ? "filled" : ""}">★</span>`;
+      }
+
+      // Build row
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${name}</td>
+        <td class="rating-stars">${starsHTML}</td>
+        <td>${product || ""}</td>
+        <td class="review-comment">${reviewText || ""}</td>
+        <td>${dateStr}</td>
+        <td>
+          ${image
+            ? `<button class="view-image-btn" >
+                <img src="/assets/icons/image.png" alt="View" style="width:20px; height:20px;">
+              </button>`
+            : "No Image"}
+        </td>
+        <td class="actions">
+          <button type="button" class="edit">Edit</button>
+          <button type="button" class="delete">Delete</button>
+        </td>
+      `;
+
+      // Attach event listeners with correct review id
+      tr.querySelector(".edit").addEventListener("click", () => {
+        console.log("Edit clicked for ID:", id);
+        handleEditReview(id);
+      });
+      tr.querySelector(".delete").addEventListener("click", () => {
+        console.log("Delete clicked for ID:", id);
+        handleDeleteReview(id);
+      });
+
+      // View image button (only if image exists)
+      if (image) {
+        tr.querySelector(".view-image-btn").addEventListener("click", () => {
+          window.open(image, "_blank"); // opens the image in a new tab
+        });
+      }
+
+      reviewsTableBody.appendChild(tr);
+    });
+  });
+}
