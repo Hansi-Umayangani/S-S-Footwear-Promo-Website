@@ -46,3 +46,31 @@ document.addEventListener("DOMContentLoaded", () => {
       navMenu.classList.toggle("active");
     });
   }
+
+  // ---------------------- FIREBASE AUTH ----------------------
+  if (auth) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (loginOption) loginOption.style.display = "none";
+        if (logoutOption) logoutOption.style.display = "flex";
+        if (userMenu) userMenu.classList.add("active");
+      } else {
+        if (loginOption) loginOption.style.display = "flex";
+        if (logoutOption) logoutOption.style.display = "none";
+        if (userMenu && currentPage !== "admin-login.html") userMenu.classList.remove("active");
+      }
+    });
+
+    // ---------------------- LOGOUT ----------------------
+    if (logoutOption) {
+      logoutOption.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try {
+          await signOut(auth);
+          window.location.reload();
+        } catch (err) {
+          console.error("Logout failed:", err);
+        }
+      });
+    }
+  }
