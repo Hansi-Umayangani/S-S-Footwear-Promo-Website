@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const currentPage = window.location.pathname.split("/").pop();
 
-});
+
 
 // ---------------------- NAV LINK HIGHLIGHT ----------------------
   navLinks.forEach(link => {
@@ -74,3 +74,39 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+  
+  // ---------------------- CUSTOMIZATION FORM SUBMISSION ----------------------
+  if (customForm) {
+    customForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Get form values
+      const customerName = document.getElementById("customerName")?.value.trim();
+      const contactNumber = document.getElementById("contactNumber")?.value.trim();
+      const emailAddress = document.getElementById("emailAddress")?.value.trim();
+      const productType = document.getElementById("productType")?.value.trim();
+      const customDetails = document.getElementById("customDetails")?.value.trim();
+      const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value;
+
+      try {
+        // Add a new document in the 'customRequests' collection
+        await addDoc(collection(db, "customRequests"), {
+          customerName,
+          contactNumber,
+          emailAddress,
+          productType,
+          customDetails,
+          contactMethod,
+          status: "Pending",       // default status for admin
+          timestamp: serverTimestamp()
+        });
+
+        alert("Your customization request has been submitted successfully!");
+        customForm.reset();
+      } catch (err) {
+        console.error("Error submitting request:", err);
+        alert("Failed to submit request. Please try again.");
+      }
+    });
+  }
+});
