@@ -177,3 +177,23 @@ async function handleEditReview(id) {
     console.error("Error loading review for editing:", error);
   }
 }
+
+// ---------------------- DELETE REVIEW ----------------------
+async function handleDeleteReview(id) {
+  if (confirm("Are you sure you want to delete this review?")) {
+    try {
+      await deleteDoc(doc(db, "reviews", id));
+      console.log("Review deleted:", id);
+      // if you were editing the same doc, reset the form
+      if (editingReviewId === id) {
+        editingReviewId = null;
+        reviewForm.reset();
+        uploadedImageURL = "";
+        imagePreview.style.display = "none";
+        if (submitBtn) submitBtn.textContent = "ADD REVIEW";
+      }
+    } catch (error) {
+      console.error("Error deleting review:", error);
+    }
+  }
+}
