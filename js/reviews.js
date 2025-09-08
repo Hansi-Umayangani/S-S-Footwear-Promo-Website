@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 });
 
+
 // -------- Highlight nav link --------
   const currentPage = window.location.pathname.split("/").pop();
   navLinks.forEach(link => {
@@ -53,3 +54,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!userMenu.contains(e.target)) userDropdown.style.display = "none";
     });
   }
+
+  // -------- Utility: format "time ago" --------
+  function timeAgo(timestamp) {
+    if (!timestamp) return "";
+    const seconds = (Date.now() - timestamp.toDate()) / 1000;
+    const minutes = seconds / 60;
+    const hours = minutes / 60;
+    const days = hours / 24;
+    if (days >= 1) return '${Math.floor(days)} day(s) ago';
+    if (hours >= 1) return '${Math.floor(hours)} hour(s) ago';
+    if (minutes >= 1) return '${Math.floor(minutes)} min(s) ago';
+    return "Just now";
+  }
+
+  // -------- Render stars --------
+  function renderStars(rating) {
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+      stars += '<span class="star ${i <= rating ? "filled" : ""}">★</span>';
+    }
+    return stars;
+  }
+
