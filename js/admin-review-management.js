@@ -197,3 +197,34 @@ async function handleDeleteReview(id) {
     }
   }
 }
+
+// ---------------------- FORM SUBMISSION ----------------------
+reviewForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const reviewData = {
+    name: (reviewerNameInput.value || "").trim(),
+    rating: Number(ratingInput.value) || 0,
+    reviewText: (reviewTextInput.value || "").trim(),
+    image: uploadedImageURL || "",
+    createdAt: serverTimestamp(),
+  };
+
+  try {
+    if (editingReviewId) {
+      await updateDoc(doc(db, "reviews", editingReviewId), reviewData);
+      console.log("Review updated:", editingReviewId);
+      editingReviewId = null;
+      if (submitBtn) submitBtn.textContent = "ADD REVIEW";
+    } else {
+      await addDoc(collection(db, "reviews"), reviewData);
+      console.log("New review added");
+    }
+
+    reviewForm.reset();
+    uploadedImageURL = "";
+    imagePreview.style.display = "none";
+  } catch (error) {
+    console.error("Error saving review:", error);
+  }
+});
