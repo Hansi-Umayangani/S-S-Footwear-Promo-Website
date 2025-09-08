@@ -106,3 +106,40 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
+  // -------- Update Review Analysis --------
+function updateReviewAnalysis(reviews) {
+  const totalReviews = reviews.length;
+  if (totalReviews === 0) return;
+
+  let sumRating = 0;
+  const starCount = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+
+  reviews.forEach(r => {
+    const rating = r.rating;
+    sumRating += rating;
+    if (starCount[rating] !== undefined) starCount[rating]++;
+  });
+
+  // Average rating
+  const averageRating = (sumRating / totalReviews).toFixed(1);
+  overallRateEl.textContent = averageRating;
+  reviewsCountEl.textContent = `Based on ${totalReviews} review${totalReviews > 1 ? 's' : ''}`;
+
+  // Stars
+  const fullStars = Math.floor(averageRating);
+  const halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
+  overallStarsEl.textContent = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(5 - fullStars - halfStar);
+
+  // Recommendation % (example: % of 4★+5★ ratings)
+  const recommended = starCount[5] + starCount[4];
+  const recommendationPercent = Math.round((recommended / totalReviews) * 100);
+  recommendationEl.textContent = `${recommendationPercent}% Of Customers Recommend S&S Footwear`;
+
+  // Update bars
+  for (let i = 5; i >= 1; i--) {
+    const percent = ((starCount[i] / totalReviews) * 100).toFixed(0);
+    barFills[i].style.width = `${percent}%`;
+    barCounts[i].textContent = starCount[i];
+  }
+}
+
