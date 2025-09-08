@@ -1,4 +1,4 @@
-import { auth } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { 
   collection, query, orderBy, onSnapshot, 
@@ -49,6 +49,11 @@ document.addEventListener("click", (e) => {
 document.addEventListener("DOMContentLoaded", () => {
   console.log("JS loaded, URL:", window.location.href);
 
+  // Select the nav buttons
+  const btnProducts = document.getElementById("btnProducts");
+  const btnReviews = document.getElementById("btnReviews");
+  const btnCustomization = document.getElementById("btnCustomization");
+
   const url = window.location.href;
   if (url.includes("product-management.html")) {
     btnProducts.classList.add("active");
@@ -62,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadReviews();
 });
 
+
 // ---------------------- FORM ELEMENTS ----------------------
 const reviewForm = document.querySelector(".review-form");
 const reviewerNameInput = document.getElementById("reviewer-name"); 
@@ -72,6 +78,8 @@ const reviewTextInput = document.getElementById("review-text");
 const imagePreview = document.getElementById("image-preview");
 const previewImg = document.getElementById("preview-img");
 const submitBtn = reviewForm?.querySelector(".submit-btn"); 
+const reviewsTableBody = document.getElementById("reviewsTableBody"); 
+
 let uploadedImageURL = "";
 let editingReviewId = null;
 
