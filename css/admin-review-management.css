@@ -427,7 +427,7 @@ input::placeholder, textarea::placeholder {
 /* -------------------- Reviews Table Styling -------------------- */
 .reviews-table {
   width: 100%;
-  min-width: 700px;
+  min-width: 600px;
   border-collapse: collapse;
   font-family: 'Open Sans', sans-serif;
 }
@@ -439,8 +439,6 @@ input::placeholder, textarea::placeholder {
   font-size: clamp(0.5rem, 1.5vw, 1rem);
   font-family: 'Open Sans', sans-serif;
   vertical-align: middle;
-  text-align: center;
-  white-space: nowrap; 
 }
 
 /* Table headers */
@@ -450,53 +448,88 @@ input::placeholder, textarea::placeholder {
   text-align: center;
 }
 
-/* Rating, Product, Date centered */
-.reviews-table td:nth-child(2),
-.reviews-table td:nth-child(3),
-.reviews-table td:nth-child(5),
-.reviews-table th:nth-child(2),
-.reviews-table th:nth-child(3),
-.reviews-table th:nth-child(5) {
+/* Align text columns: reviewer, rating, product, comment, date, actions */
+.reviews-table td.reviewer,
+.reviews-table td.rating,
+.reviews-table td.product,
+.reviews-table td.review-comment,
+.reviews-table td.date,
+.reviews-table th.reviewer,
+.reviews-table th.rating,
+.reviews-table th.product,
+.reviews-table th.review-comment,
+.reviews-table th.date,
+.reviews-table th.actions {
   text-align: center;
 }
 
-/* Comments column */
+/* Stars in rating column */
+.reviews-table td.rating-stars .star {
+  color: #ccc;
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+.reviews-table td.rating-stars .star.filled {
+  color: #f5c518;
+}
+
+
+/* Review Image column */
+.reviews-table td.review-image-cell,
+.reviews-table th.review-image-cell {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  justify-content: center;
+}
+
+.view-image-btn {
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background-color: #ffebdbe5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Hover effect */
+.view-image-btn:hover {
+  background-color: #ffe0c6;
+}
+
+/* Icon inside button */
+.view-image-btn img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Comment column */
+.reviews-table td.review-comment,
 .reviews-table th.review-comment {
   text-align: left;
-  min-width: 180px;
-}
-
-.reviews-table td.review-comment {
-  text-align: left;
-  font-style: italic;
-  color: #4b2e1e;
-  max-width: 300px;
-  word-wrap: break-word;
   white-space: normal;
+  word-wrap: break-word;
+  max-width: 280px;
 }
 
-/* Action Buttons in Table */
-.reviews-table td:nth-child(6) {
-  line-height: 5;
-  min-height: 130px;
-} 
-.reviews-table th:nth-child(6) {
+/* Actions Column */
+.reviews-table td.actions,
+.reviews-table th.actions {
   text-align: center;
-  width: 90px;
   vertical-align: middle;
-  padding: 8px;
-}
-
-.actions {
-  display: flex;
+  padding: 10px;
   justify-content: center;
-  align-items: center;
-  gap: 6px;
 }
 
+/* Buttons styling */
 .actions button {
-  width: clamp(24px, 3vw, 32px);
-  height: clamp(24px, 3vw, 32px);
+  width: 36px;
+  height: 36px;
   border: none;
   border-radius: 50%;
   background-color: #ffebdbe5;
@@ -505,10 +538,14 @@ input::placeholder, textarea::placeholder {
   background-size: clamp(14px, 2vw, 18px);
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
+  font-size: 0;
+  color: transparent;
+  padding: 0%;
+  display: flex;
 }
 
 /* Hover effect */
-.actions-cell button:hover {
+.actions button:hover {
   background-color: #ffe0c6;
   transform: scale(1);
 }
@@ -521,6 +558,23 @@ input::placeholder, textarea::placeholder {
 .actions button.delete {
   background-image: url("../assets/icons/trash.png");
 }
+
+/* -------------------- Responsive Breakpoints -------------------- */
+@media (max-width: 991px) {
+  .photo-box { width: 70px; height: 70px; }
+  .reviews-table td.review-comment { max-width: 220px; font-size: 0.85rem; }
+}
+
+@media (max-width: 767px) {
+  .photo-box { width: 60px; height: 60px; }
+  .reviews-table td.review-comment { max-width: 150px; font-size: 0.75rem; }
+}
+
+@media (max-width: 575px) {
+  .photo-box { width: 50px; height: 50px; }
+  .reviews-table td.review-comment { max-width: 140px; font-size: 0.7rem; }
+}
+
 
 /* ---------------- Footer ---------------- */
 .footer {
