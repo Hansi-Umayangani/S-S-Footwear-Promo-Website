@@ -20,11 +20,11 @@ userMenu.addEventListener("click", () => {
 // Show/hide login/logout based on auth state
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    loginOption.style.display = "none"; // hide login
-    logoutOption.style.display = "flex"; // show logout
+    loginOption.style.display = "none"; 
+    logoutOption.style.display = "flex";
   } else {
-    loginOption.style.display = "flex"; // show login
-    logoutOption.style.display = "none"; // hide logout
+    loginOption.style.display = "flex"; 
+    logoutOption.style.display = "none"; 
   }
 });
 
@@ -33,32 +33,23 @@ logoutOption.addEventListener("click", async (e) => {
   e.preventDefault();
   try {
     await signOut(auth);
-    window.location.href = "login.html"; // redirect after logout
+    window.location.href = "login.html"; 
   } catch (error) {
     console.error("Logout failed:", error.message);
   }
 });
 
-// Close dropdown if clicked outside
 document.addEventListener("click", (e) => {
   if (!userMenu.contains(e.target)) {
     userDropdown.style.display = "none";
   }
 });
 
-// Wait until DOM is loaded 
-document.addEventListener("DOMContentLoaded", () => { 
+// ---------------------- ADMIN NAV HIGHLIGHT ----------------------
+document.addEventListener("DOMContentLoaded", () => {
   console.log("JS loaded, URL:", window.location.href);
 
-  // Get admin nav buttons
-  const btnProducts = document.getElementById("btn-products");
-  const btnReviews = document.getElementById("btn-reviews");
-  const btnCustomization = document.getElementById("btn-customization");
-
-  // Get current page from URL
   const url = window.location.href;
-
-  // Highlight the active button based on the current page
   if (url.includes("product-management.html")) {
     btnProducts.classList.add("active");
   } else if (url.includes("review-management.html")) {
@@ -66,4 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (url.includes("customization-management.html")) {
     btnCustomization.classList.add("active");
   }
+
+  // Load reviews from Firestore
+  loadReviews();
 });
