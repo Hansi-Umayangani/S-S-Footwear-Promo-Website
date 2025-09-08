@@ -34,3 +34,22 @@ document.addEventListener("DOMContentLoaded", () => {
     1: document.getElementById("count-1")
   };
 });
+
+// -------- Highlight nav link --------
+  const currentPage = window.location.pathname.split("/").pop();
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute("href").split("/").pop();
+    if (linkPage === currentPage) link.classList.add("active");
+  });
+
+  // -------- User dropdown toggle --------
+  if (userMenu && userDropdown) {
+    userMenu.addEventListener("click", () => {
+      userDropdown.style.display =
+        userDropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!userMenu.contains(e.target)) userDropdown.style.display = "none";
+    });
+  }
