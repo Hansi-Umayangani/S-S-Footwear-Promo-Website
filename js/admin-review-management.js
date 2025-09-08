@@ -1,5 +1,10 @@
 import { auth } from "./firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { 
+  collection, query, orderBy, onSnapshot, 
+  doc, deleteDoc, updateDoc, serverTimestamp, 
+  addDoc, getDoc 
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // Elements
 const loginOption = document.getElementById("loginOption");
