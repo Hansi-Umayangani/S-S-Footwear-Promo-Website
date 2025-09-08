@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     2: document.getElementById("count-2"),
     1: document.getElementById("count-1")
   };
-});
 
 
 // -------- Highlight nav link --------
@@ -142,4 +141,20 @@ function updateReviewAnalysis(reviews) {
     barCounts[i].textContent = starCount[i];
   }
 }
+
+// -------- Fetch and render reviews --------
+  if (reviewsContainer) {
+    const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+    onSnapshot(q, (snapshot) => {
+      reviewsContainer.innerHTML = "";
+      const reviews = [];
+      snapshot.forEach((doc) => {
+        const review = doc.data();
+        reviews.push(review);
+        reviewsContainer.innerHTML += renderReviewCard(review);
+      });
+      updateReviewAnalysis(reviews);
+    });
+  }
+});
 
