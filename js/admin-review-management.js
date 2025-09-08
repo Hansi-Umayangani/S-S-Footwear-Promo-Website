@@ -138,3 +138,42 @@ function loadReviews() {
     });
   });
 }
+
+// ---------------------- EDIT REVIEW ----------------------
+async function handleEditReview(id) {
+  try {
+    const reviewDoc = await getDoc(doc(db, "reviews", id));
+    if (!reviewDoc.exists()) {
+      console.error("Review not found!");
+      return;
+    }
+
+    const review = reviewDoc.data();
+    console.log("Loaded review for editing:", review);
+
+    // Fill form fields (use the exact variable names from above)
+    reviewerNameInput.value = review.name || "";
+    ratingInput.value = review.rating || "";
+    reviewTextInput.value = review.reviewText || "";
+
+    // Image preview
+    if (review.image) {
+      uploadedImageURL = review.image;
+      previewImg.src = review.image;
+      imagePreview.style.display = "block";
+    } else {
+      uploadedImageURL = "";
+      previewImg.src = "";
+      imagePreview.style.display = "none";
+    }
+
+    // Mark editing and update submit button label
+    editingReviewId = id;
+    if (submitBtn) submitBtn.textContent = "UPDATE REVIEW";
+
+    // Optionally scroll form into view so admin sees it
+    reviewForm.scrollIntoView({ behavior: "smooth", block: "center" });
+  } catch (error) {
+    console.error("Error loading review for editing:", error);
+  }
+}
