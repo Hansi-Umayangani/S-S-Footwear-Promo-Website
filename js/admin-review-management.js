@@ -61,3 +61,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load reviews from Firestore
   loadReviews();
 });
+
+// ---------------------- FORM ELEMENTS ----------------------
+const reviewForm = document.querySelector(".review-form");
+const reviewerNameInput = document.getElementById("reviewer-name"); 
+const emailInput = document.getElementById("email");
+const productInput = document.getElementById("product"); 
+const ratingInput = document.getElementById("rating");
+const reviewTextInput = document.getElementById("review-text");
+const imagePreview = document.getElementById("image-preview");
+const previewImg = document.getElementById("preview-img");
+const submitBtn = reviewForm?.querySelector(".submit-btn"); 
+let uploadedImageURL = "";
+let editingReviewId = null;
