@@ -220,6 +220,25 @@ main {
     margin-top: 15px;
 }
 
+.stars .star {
+  display: inline-block;
+  position: relative;
+  color: #ccc; /* empty star color */
+}
+
+.stars .star.full {
+  color: #ffc107; /* gold for full star */
+}
+
+.stars .star.half {
+  color: #ffc107; /* fallback color */
+  background: linear-gradient(to right, #ffc107 50%, #ccc 50%);
+  background-clip: text;           /* standard property */
+  -webkit-background-clip: text;   /* Safari / Chrome fallback */
+  -webkit-text-fill-color: transparent; /* for WebKit text clipping */
+}
+
+
 .based-on-reviews { 
     font-size: (0.75rem, 1.2vw, 0.95rem); 
     color: black; }

@@ -98,6 +98,9 @@ function loadReviews() {
 
       const dateStr = createdAt?.toDate ? createdAt.toDate().toLocaleString() : "";
 
+      const numericRating = Number(rating);
+      const safeRating = isNaN(numericRating) ? 0 : Math.min(Math.max(numericRating, 0), 5);
+
       // Build rating stars
       let starsHTML = "";
       for (let i = 1; i <= 5; i++) {
