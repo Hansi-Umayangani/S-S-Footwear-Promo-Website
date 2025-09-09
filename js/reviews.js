@@ -142,7 +142,7 @@ function updateReviewAnalysis(reviews) {
   overallStarsEl.textContent =
     "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(5 - fullStars - halfStar);
   
-  // Recommendation % (example: % of 4★+5★ ratings)
+  // Recommendation
   const recommended = (starCount[5] || 0) + (starCount[4] || 0);
   const recommendationPercent = Math.round((recommended / validRatingCount) * 100);
   if (recommendationEl) recommendationEl.textContent = `${recommendationPercent}% Of Customers Recommend S&S Footwear`;

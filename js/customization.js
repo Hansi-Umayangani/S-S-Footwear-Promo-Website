@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
           productType,
           customDetails,
           contactMethod,
-          status: "Pending",       // default status for admin
+          status: "Pending",
           timestamp: serverTimestamp()
         });
 

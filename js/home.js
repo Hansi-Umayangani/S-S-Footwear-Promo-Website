@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (user) {
         if (loginOption) loginOption.style.display = "none";
         if (logoutOption) logoutOption.style.display = "flex";
-        if (userMenu) userMenu.classList.add("active"); // highlight when logged in
+        if (userMenu) userMenu.classList.add("active");
       } else {
         if (loginOption) loginOption.style.display = "flex";
         if (logoutOption) logoutOption.style.display = "none";

@@ -46,6 +46,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // -------- Firebase Auth (guarded) --------
+  if (typeof auth !== "undefined" && onAuthStateChanged) {
+    onAuthStateChanged(auth, (user) => {
+      if (!loginOption || !logoutOption || !userMenu) return;
+      if (user) {
+        loginOption.style.display = "none";
+        logoutOption.style.display = "flex";
+        userMenu.classList.add("active");
+      } else {
+        loginOption.style.display = "flex";
+        logoutOption.style.display = "none";
+        if (currentPage !== "admin-login.html") userMenu.classList.remove("active");
+      }
+    });
+
+    if (logoutOption) {
+      logoutOption.addEventListener("click", async (e) => {
+        e.preventDefault();
+        try {
+          await signOut(auth);
+          window.location.reload();
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
+  }
+
   // ---------- Add Review form + Cloudinary ----------
   const reviewForm = document.querySelector(".review-form");
   const uploadBox = document.getElementById("upload-box");
@@ -63,8 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const widget = window.cloudinary.createUploadWidget(
       {
-        cloudName: "dvcmr9ojz",          // <-- your cloud name
-        uploadPreset: "unsigned_preset", // <-- your unsigned preset
+        cloudName: "dvcmr9ojz",
+        uploadPreset: "unsigned_preset",
         multiple: false,
         folder: "reviews",
       },
@@ -124,17 +152,15 @@ document.addEventListener("DOMContentLoaded", () => {
         createdAt: serverTimestamp(),
       });
 
-      // Show success message but stay on the same page
-      alert("✅ Your review has been submitted! Thank you.");
+      alert("Your review has been submitted! Thank you.");
 
-      // Optional: reset form
       reviewForm.reset();
       if (imagePreview) imagePreview.style.display = "none";
       uploadedImageURL = "";
 
     } catch (error) {
       console.error("Error adding review:", error);
-      alert("❌ Failed to submit review. Please try again.");
+      alert("Failed to submit review. Please try again.");
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;

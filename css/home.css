@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------------- Reset & Base ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -41,7 +41,7 @@ img {
   display: block;
 }
 
-/* ---------------- Navbar / Header ---------------- */
+/* ---------------- Navbar ---------------- */
 .navbar {
   background-color: #4b2e1e;
   color: #FFF9F4;
@@ -56,7 +56,6 @@ img {
   z-index: 1000;
 }
 
-/* Right-side container */
 .nav-right {
   display: flex;
   align-items: center;
@@ -89,6 +88,12 @@ img {
   font-weight: 500;
   font-family: 'Crison Text', serif;
   font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+}
+
+.nav-links a.active {
+  color: #d2a06a;
+  font-weight: bold;
+  border-bottom: 2px solid #d2a06a;
 }
 
 .nav-links a:hover {

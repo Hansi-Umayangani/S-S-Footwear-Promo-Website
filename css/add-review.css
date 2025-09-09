@@ -1,4 +1,4 @@
-/* ================= Reset & Base ================= */
+/* --------------- Reset & Base --------------- */
 * {
   margin: 0;
   padding: 0;
@@ -37,7 +37,7 @@ img {
   display: block;
 }
 
-/* ================= Navbar / Header ================= */
+/* --------------- Navigation Bar --------------- */
 .navbar {
   background-color: #4b2e1e;
   color: #FFF9F4;
@@ -137,7 +137,9 @@ img {
   margin-right: 8px;
 }
 
-/* ---------------- Customer Review Section ---------------- */
+/* --------------- Main Content --------------- */
+
+/* ----- Customer Review Section ----- */
 .customer-review {
   background: #fff; 
   max-width: 100%;            
@@ -162,7 +164,7 @@ img {
   width: 100%;
 }
 
-/* -------------------- Review Form -------------------- */
+/* ----- Review Form ----- */
 .review-form-container {
   background: #fdf6ed;
   width: 100%;
@@ -245,7 +247,7 @@ textarea::placeholder {
   color: #888; 
 }
 
-/* -------------------- Image Upload Box -------------------- */
+/* Image Upload */
 .upload-box {
   border: 1px dashed #aaa9a9;
   border-radius: 8px;

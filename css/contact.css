@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------------- Reset & Base ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -41,7 +41,7 @@ img {
   display: block;
 }
 
-/* ---------------- Navbar / Header ---------------- */
+/* -------------------- Navbar -------------------- */
 .navbar {
   background-color: #4b2e1e;
   color: #FFF9F4;
@@ -56,7 +56,6 @@ img {
   z-index: 1000;
 }
 
-/* Right-side container */
 .nav-right {
   display: flex;
   align-items: center;
@@ -157,7 +156,6 @@ img {
   text-align: center;
 }
 
-/* Each Card */
 .contact-card {
   background: #fdf6ed;
   padding: clamp(20px, 4vw, 70px);
@@ -288,7 +286,7 @@ img {
 
 
 
-/* ---------------- Message Form Section (styled like review form) ---------------- */ 
+/* ---------------- Message Form Section ---------------- */ 
 .message-form-section .review-management { 
 background: #fff;
 margin: auto; 
@@ -382,13 +380,11 @@ border-color: #99662c;
 box-shadow: 0 0 5px rgba(153, 102, 44, 0.3); 
 outline: none; } 
 
-/* Textarea */ 
 .message-form-section textarea { 
 resize: vertical; 
 min-height: 120px; 
 font-family: 'Arial', serif; } 
 
-/* Placeholder */ 
 .message-form-section input::placeholder, 
 .message-form-section textarea::placeholder { 
 color: #888; 
@@ -417,7 +413,7 @@ message-form-section .submit-bt-btn:hover {
   box-shadow: 0 4px 8px rgba(109, 58, 11, 0.35);
 }
 
-/* Direct Contact Section (CTA Style) */
+/* CTA Section */
 .direct-contact-section {
   position: relative;
   width: 100%;
@@ -432,7 +428,6 @@ message-form-section .submit-bt-btn:hover {
   color: #fff;
 }
 
-/* Heading */
 .direct-contact-section h2 {
   position: relative;
   top: -1rem;
@@ -441,7 +436,6 @@ message-form-section .submit-bt-btn:hover {
   margin-bottom: -1rem;
 }
 
-/* Subheading */
 .direct-contact-section p {
   font-size: clamp(1rem, 1.2vw, 1.2rem);
   min-height: 3rem;
@@ -450,7 +444,6 @@ message-form-section .submit-bt-btn:hover {
   color: #fff;
 }
 
-/* Buttons Container */
 .direct-contact-buttons {
   display: flex;
   gap: 2rem;
@@ -488,7 +481,6 @@ message-form-section .submit-bt-btn:hover {
   object-fit: contain;
 }
 
-/* Hover Effect */
 .direct-contact-buttons .btn:hover {
   background: #fff;
   transform: translateY(-3px);

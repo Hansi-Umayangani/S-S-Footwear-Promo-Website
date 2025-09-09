@@ -148,7 +148,6 @@ img {
 
 /* ---------------- Dashboard Title ---------------- */
 
-/* Dashboard Title */
 .dashboard-title {
   text-align: center;
   font-family: 'Playfair Display', serif;
@@ -372,7 +371,7 @@ input::placeholder, textarea::placeholder {
   object-fit: cover;
 }
 
-/* Submit / Add Review Button */
+/* Add Review Button */
 .submit-btn {
   width: 100%;
   padding: 10px 0;
@@ -448,7 +447,7 @@ input::placeholder, textarea::placeholder {
   text-align: center;
 }
 
-/* Align text columns: reviewer, rating, product, comment, date, actions */
+/* Reviewer, rating, product, comment, date, actions columns */
 .reviews-table td.reviewer,
 .reviews-table td.rating,
 .reviews-table td.product,
@@ -496,7 +495,6 @@ input::placeholder, textarea::placeholder {
   padding: 0;
 }
 
-/* Hover effect */
 .view-image-btn:hover {
   background-color: #ffe0c6;
 }

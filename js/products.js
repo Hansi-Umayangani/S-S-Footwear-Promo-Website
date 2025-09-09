@@ -205,8 +205,8 @@ if (searchInput) {
 // ------------------ CATEGORY FILTER BUTTONS ------------------
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      currentFilter = btn.dataset.category; // Update filter
-      currentSearch = ""; // Reset search when filtering
+      currentFilter = btn.dataset.category;
+      currentSearch = "";
       filterButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       displayProducts(allProducts);
