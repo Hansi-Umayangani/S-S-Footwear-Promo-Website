@@ -252,6 +252,11 @@ img {
   text-align: center;
 }
 
+.requests-table td:nth-child(2),
+.requests-table th:nth-child(2) {
+  text-align: center;
+}
+
 .requests-table td:nth-child(3),
 .requests-table th:nth-child(3) {
   text-align: center;
@@ -293,16 +298,16 @@ img {
 .requests-table td:nth-child(7) {
   line-height: 5;
   min-height: 100px;
+  text-align: center;
 } 
 .requests-table th:nth-child(7) {
   text-align: center;
-  width: 90px;
+  width: 120px;
   vertical-align: middle;
   padding: 8px;
 }
 
 .actions {
-  display: flex;
   justify-content: center;
   align-items: center; 
   gap: 6px;
@@ -320,7 +325,6 @@ img {
   background-size: 18px 18px;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -494,6 +498,21 @@ img {
     width: 160px;
     height: 40px;
   }
+.requests-table td:nth-child(3),
+.requests-table th:nth-child(3) {
+  width: 50px;
+  text-align: center;
+}
+.requests-table td:nth-child(4),
+.requests-table th:nth-child(4) {
+  width: 100px;
+  text-align: center;
+}
+.requests-table td:nth-child(5),
+.requests-table th:nth-child(5) {
+  width: 5000px;
+  text-align: center;
+}
   .footer-content {
     grid-template-columns: 0.8fr 0.5fr 0.5fr;
     gap: 3rem;
@@ -522,6 +541,22 @@ img {
   .requests-table {
     font-size: 0.85rem;
   }
+
+  .requests-table td:nth-child(3),
+.requests-table th:nth-child(3) {
+  width: 50px;
+  text-align: center;
+}
+.requests-table td:nth-child(4),
+.requests-table th:nth-child(4) {
+  width: 10px;
+  text-align: center;
+}
+.requests-table td:nth-child(5),
+.requests-table th:nth-child(5) {
+  width: 400px;
+  text-align: center;
+}
   .requests-filters {
     flex-direction: row;
     align-items: center;

@@ -57,13 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // -------- Utility: format "time ago" --------
   function timeAgo(timestamp) {
     if (!timestamp) return "";
+
     const seconds = (Date.now() - timestamp.toDate()) / 1000;
     const minutes = seconds / 60;
     const hours = minutes / 60;
     const days = hours / 24;
-    if (days >= 1) return '${Math.floor(days)} day(s) ago';
-    if (hours >= 1) return '${Math.floor(hours)} hour(s) ago';
-    if (minutes >= 1) return '${Math.floor(minutes)} min(s) ago';
+
+    if (days >= 1) return `${Math.floor(days)} day(s) ago`;
+    if (hours >= 1) return `${Math.floor(hours)} hour(s) ago`;
+    if (minutes >= 1) return `${Math.floor(minutes)} min(s) ago`;
     return "Just now";
   }
 
@@ -91,11 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
             ${renderStars(review.rating)}
           </div>
         </div>
-        <p class="review-text">${review.reviewText}</p>
+        <p class="review-text">${review.reviewText}</p><br>
         ${
           review.image 
             ? `<p class="review-image-link">
-                <a href="${review.image}" target="_blank" rel="noopener noreferrer">
+                <a href="${review.image}" target="_blank" rel="noopener noreferrer" style="color: #8f4c00ff; text-decoration: underline;">
                   View Image >>>
                 </a>
               </p>` 

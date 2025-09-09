@@ -1,6 +1,6 @@
 import { auth, db } from "./firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { collection, getDocs, query, orderBy, deleteDoc, doc, updateDoc } 
+import { collection, query, orderBy, onSnapshot, deleteDoc, doc, updateDoc } 
   from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // ------------------- DOM ELEMENTS -------------------
@@ -68,28 +68,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ------------------- FETCH CUSTOMIZATION REQUESTS -------------------
-async function fetchCustomizationRequests(tableBody) {
+function fetchCustomizationRequests(tableBody) {
   if (!tableBody) return;
 
-  tableBody.innerHTML = ""; // clear old rows
+  const q = query(collection(db, "customRequests"), orderBy("timestamp", "desc"));
 
-  try {
-    const q = query(collection(db, "customRequests"), orderBy("timestamp", "desc"));
-    const querySnapshot = await getDocs(q);
+  onSnapshot(q, (querySnapshot) => {
+    tableBody.innerHTML = "";
 
-    if (querySnapshot.empty) {
-      tableBody.innerHTML = `
-        <tr>
-          <td colspan="7" style="text-align:center; padding:10px;">No requests found.</td>
-        </tr>
-      `;
-      return;
-    }
+  if (querySnapshot.empty) {
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align:center; padding:10px;">No requests found.</td>
+      </tr>
+    `;
+    return;
+  }
 
     querySnapshot.forEach((docSnap) => {
       const request = docSnap.data();
-
-      // Ensure all fields are defined
       const date = request.timestamp?.toDate().toLocaleDateString() || "";
       const customerName = request.customerName || "-";
       const productType = request.productType || "-";
@@ -126,8 +123,6 @@ async function fetchCustomizationRequests(tableBody) {
 
         try {
           await updateDoc(doc(db, "customRequests", docSnap.id), { status: newStatus });
-          statusBtn.textContent = newStatus;
-          statusBtn.className = "status-btn " + newStatus.toLowerCase();
         } catch (err) {
           console.error("Failed to update status:", err);
         }
@@ -138,7 +133,6 @@ async function fetchCustomizationRequests(tableBody) {
         if (!confirm("Are you sure you want to delete this request?")) return;
         try {
           await deleteDoc(doc(db, "customRequests", docSnap.id));
-          row.remove();
         } catch (err) {
           console.error("Failed to delete request:", err);
         }
@@ -146,12 +140,12 @@ async function fetchCustomizationRequests(tableBody) {
 
       tableBody.appendChild(row);
     });
-  } catch (err) {
-    console.error("Failed to fetch requests:", err);
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="7" style="text-align:center; color:red;">Failed to load requests.</td>
-      </tr>
-    `;
+    }, (err) => {
+      console.error("Failed to fetch requests:", err);
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center; color:red;">Failed to load requests.</td>
+        </tr>
+      `;
+    });
   }
-}
