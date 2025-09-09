@@ -15,13 +15,13 @@
     <div class="logo">
       S&S  FOOTWEAR
       <img src="../../assets/images/Brand_Logo.png" alt="Brand_Logo" class="brand-logo"></div>
-    
+        <a href="../customer/home.html">Home</a>
+        <a href="../customer/products.html">Products</a>
+        <a href="../customer/customization.html">Customization</a>
+        <a href="../customer/reviews.html">Reviews</a>
+        <a href="../customer/contact.html">Contact Us</a>
       <nav class="nav-links" id="nav-menu">
-      <a href="../customer/home.html">Home</a>
-      <a href="../customer/products.html">Products</a>
-      <a href="../customer/customization.html">Customization</a>
-      <a href="../customer/reviews.html">Reviews</a>
-      <a href="../customer/contact.html">Contact Us</a>
+      
     </nav>
     <div class="menu-toggle" id="menu-toggle">☰</div>
   </header>
@@ -40,34 +40,34 @@
   <!-- Left Form Section -->
   <section class="form-card">
     <h2>Customization Request Form</h2>
-    <form>
+    <form id="customRequestForm">
       <label>Customer Name <span>*</span></label>
-      <input type="text" placeholder="Enter your full name" required>
+      <input type="text" id="customerName" placeholder="Enter your full name" required>
 
       <label>Contact Number <span>*</span></label>
-      <input type="tel" placeholder="Enter your phone number" required>
+      <input type="tel" id="contactNumber" placeholder="Enter your phone number" required>
 
       <label>Email Address <span>*</span></label>
-      <input type="email" placeholder="Enter your email address" required>
+      <input type="email" id="emailAddress" placeholder="Enter your email address" required>
 
       <label>Product Type</label>
-      <input type="text" placeholder="Enter product type">
+      <input type="text" id="productType" placeholder="Enter product type">
 
       <label>Customization Details</label>
-      <textarea placeholder="Please describe your customization requirements in detail (size, color, material, design preferences, etc.)"></textarea>
+      <textarea id="customerDetails" placeholder="Please describe your customization requirements in detail (size, color, material, design preferences, etc.)" ></textarea>
 
       <label>Preferred Contact Method <span>*</span></label>
       <div class="contact-options">
         <label>
-          <input type="radio" name="contact" required>
+          <input type="radio" name="contactMethod" value="Call" required>
           <img src="../../assets/icons/Contact_Page_Icons/telephone (1).png" alt="Call"> Call
         </label>
         <label>
-          <input type="radio" name="contact">
+          <input type="radio" name="contactMethod" value="WhatsApp">
           <img src="../../assets/icons/Contact_Page_Icons/whatsapp (1).png" alt="WhatsApp"> Whatsapp
         </label>
         <label>
-          <input type="radio" name="contact">
+          <input type="radio" name="contactMethod" value="Email">
           <img src="../../assets/icons/Contact_Page_Icons/e-mail(1).png" alt="Email"> Email
         </label>
       </div>
@@ -138,11 +138,11 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="../customer/home.html">Home</a></li>
-        <li><a href="../customer/products.html">Products</a></li>
-        <li><a href="../customer/customization.html">Customization</a></li>
-        <li><a href="../customer/reviews.html">Reviews</a></li>
-        <li><a href="../customer/contact.html">Contact</a></li>
+        <li><a href="../../pages/customer/home.html">Home</a></li>
+        <li><a href="../../pages/customer/products.html">Products</a></li>
+        <li><a href="../../pages/customer/customization.html">Customization</a></li>
+        <li><a href="../../pages/customer/reviews.html">Reviews</a></li>
+        <li><a href="../../pages/customer/contact.html">Contact</a></li>
       </ul>
     </div>
 
@@ -150,15 +150,15 @@
     <div class="contact-info">
       <h4>Contact Info</h4>
       <p>
-        <img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon">
+        <img src="../../assets/icons/Button_Icons/telephone.png" alt="Phone" class="contact-icon">
         <a href="tel:0757356506">0757356506</a>
       </p>
       <p>
-        <img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
+        <img src="../../assets/icons/Button_Icons/e-mail.png" alt="Email" class="contact-icon">
         <a href="mailto:ss01.footwear@gmail.com">ss01.footwear@gmail.com</a>
       </p>
       <p>
-        <img src="../../assets/icons/Header-Footer_Icons/location.png" alt="Location" class="contact-icon">
+        <img src="../../assets/icons/Contact_Page_Icons/location (1).png" alt="Location" class="contact-icon">
         <a href="https://maps.app.goo.gl/aLB4kqipQs7XuvLc8/" target="_blank">
         S&S Shoes,<br>
         No.14, Madolompitiya Road,<br>
@@ -175,7 +175,8 @@
   </div>
 </footer>
 
-
+<script type="module" src="/js/customization.js"></script>
+<script type="module" src="/js/admin-customization-management.js"></script>
   
 </body>
 </html>

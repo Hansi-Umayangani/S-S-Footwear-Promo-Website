@@ -91,6 +91,14 @@ img {
   font-size: clamp(0.85rem, 1.5vw, 1.2rem);
 }
 
+/* Highlight active nav link */
+.nav-links a.active {
+  color: #d2a06a;
+  
+  font-weight: bold;
+  border-bottom: 2px solid #d2a06a;
+}
+
 .nav-links a:hover {
   color: #d2a06a;
 }
@@ -197,10 +205,30 @@ main {
   gap: 5px 15px;
 }
 
-.rate { grid-row: 1 / span 2; font-size: clamp(2rem, 5vw, 8rem); font-weight: bold; color: black; margin-left: 16px; }
-.stars { font-size: clamp(1rem, 2.5vw, 1.5rem); color: #ffc107; line-height: 0.5; margin-top: 15px;}
-.based-on-reviews { font-size: (0.75rem, 1.2vw, 0.95rem); color: black; }
-.percentage { margin: 15px; font-size: (0.75rem, 1.2vw, 0.95rem); color: black; }
+.rate { 
+    grid-row: 1 / span 2; 
+    font-size: clamp(2rem, 5vw, 8rem); 
+    font-weight: bold; 
+    color: black; 
+    margin-left: 16px; 
+}
+
+.stars { 
+    font-size: clamp(1rem, 2.5vw, 1.5rem); 
+    color: #ffc107; 
+    line-height: 0.5; 
+    margin-top: 15px;
+}
+
+.based-on-reviews { 
+    font-size: (0.75rem, 1.2vw, 0.95rem); 
+    color: black; }
+
+.percentage { 
+    margin: 15px; 
+    font-size: (0.75rem, 1.2vw, 0.95rem); 
+    color: black; 
+}
 
 .rating-bar-row {
   display: flex;
@@ -208,7 +236,10 @@ main {
   gap: 10px;
   margin-bottom: 15px;
 }
-.rating-bar-row span { font-size: clamp(0.75rem, 1.2vw, 0.95rem); color: black; }
+.rating-bar-row span { 
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem); 
+    color: black; 
+}
 
 .bar-container {
   width: 100%;
@@ -227,11 +258,14 @@ main {
 .reviews-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: stretch;
   gap: 20px;
   width: 100%;
-  padding: 0;
+  padding: 10px 10px 10px 10px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
 }
 
 .review-card {
@@ -239,9 +273,11 @@ main {
   max-width: calc(50% - 20px);
   background: #fff;
   border-radius: 8px;
-  padding: 2rem;
+  padding: 20px ;
   box-shadow: 0 4px 15px rgba(109, 58, 11, 0.5);
-  margin-bottom: 25px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* Review Card Inner */
@@ -251,14 +287,46 @@ main {
   justify-content: space-between;
   margin-bottom: 15px;
 }
-.quote-icon { font-size: 48px; color: #ccc; margin-right: 15px; }
-.reviewer-info { display: flex; flex-direction: column; flex-grow: 1; }
-.reviewer-name { font-weight: bold; color: #333; }
-.product-name, .review-time { font-size: 0.9em; color: #666; margin-top: 2px; }
-.rating-stars { font-size: 24px; color: #ccc; }
-.star { margin-right: 2px; }
-.star.filled { color: #ffd700; }
-.review-text { font-size: 1em; color: #444; line-height: 1.6; font-style: italic; }
+.quote-icon { 
+    font-size: 48px; 
+    color: #ccc; 
+    margin-right: 15px; 
+    margin-top: -20px;
+}
+.reviewer-info { 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1;
+}
+.reviewer-name { 
+    font-weight: bold; 
+    color: #333; 
+}
+
+.product-name, .review-time { 
+    font-size: 0.9em; 
+    color: #666; 
+    margin-top: 2px; 
+}
+
+.rating-stars { 
+    font-size: 24px; 
+    color: #ccc; 
+}
+
+.star { 
+    margin-right: 2px; 
+}
+.star.filled { 
+    color: #ffd700; 
+}
+
+.review-text { 
+    font-size: 1em; 
+    color: #444; 
+    line-height: 1.6; 
+    font-style: italic; 
+}
 
 /* ---------------- Call to Actions Section ---------------- */
 .cta-section {
@@ -504,10 +572,33 @@ main {
   .message-form-section .review-management { max-width: 75%; }
   .review-title { padding: 5rem 15% 4rem; }
   .review-analysis-box { padding: 3rem; font-size: 1rem;}
-  .reviews-container { gap: 2rem; }
-  
-}
+  .reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 95%;
+  padding: 0 10px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  }
 
+  .review-card {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(109, 58, 11, 0.5);
+  }
+
+  .reviews-section {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+}
 
 /* Desktop / Laptop (992px – 1199px) */
 @media (max-width: 1199px) and (min-width: 992px) {
@@ -528,16 +619,34 @@ main {
 
   .review-title { padding: 4rem 12% 3.5rem; }
   .review-analysis-box { padding: 2.8rem; font-size: 0.95rem; }
-  .reviews-container { 
-    align-items: center;
-    gap: 2rem;
-   }
 
-  .review-card { 
-    max-width: 95%;
-    align-items: center; 
-    gap: 2rem;
-  }
+  .reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 95%;
+  padding: 0 10px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+.review-card {
+  flex: 1 1 calc(50% - 20px);
+  max-width: calc(50% - 20px);
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(109, 58, 11, 0.5);
+}
+
+.reviews-section {
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
 }
 
 /* Tablet (768px – 991px) */
@@ -580,25 +689,29 @@ main {
   .analysis-left, .analysis-right { max-width: 100%; text-align: left; }
 
   .review-analysis-box { padding: 2rem; font-size: 0.9rem}
-  .reviews-container { 
-    gap: 1.5rem;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px; 
-  }
-  
-  .review-card { 
-    flex: 1 1 100%; 
-    max-width: 500%; 
-  }
+  .reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 0 10px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+.review-card {
+  flex: 1 1 calc(50% - 20px);
+  max-width: calc(50% - 20px);
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(109, 58, 11, 0.5);
+}
 
   .reviews-section {
     grid-template-columns: 1fr;
-  }
-
-  .review-card {
-    flex: 1 1 100%;
-    max-width: 100%;
   }
 }
 
@@ -785,10 +898,18 @@ main {
   .analysis-left, .analysis-right { text-align: left; }
 
   .reviews-container { gap: 2rem; margin-top: -20px;}
-  .review-card { padding: 1rem; font-size: 0.9rem; margin-top: 20px;}
+  .review-card { 
+    padding: 1rem; 
+    font-size: 0.9rem; 
+    margin-top: 20px; 
+    flex: 1 1 100%; 
+    max-width: 100%; }
 
   .cta-section h2, .share-section h2 { font-size: 1.4rem; }
   .cta-section p, .share-section p { font-size: 0.9rem; }
   .cta-buttons, .share-buttons { flex-direction: column; }
-  .cta-buttons .btn, .share-buttons .btn { font-size: 0.8rem; padding: 0.6rem; width: 100%; }
+  .cta-buttons .btn, .share-buttons .btn { 
+    font-size: 0.8rem; 
+    padding: 0.6rem;
+    width: 100%; }
 }

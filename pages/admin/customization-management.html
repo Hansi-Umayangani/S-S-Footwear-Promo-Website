@@ -59,12 +59,6 @@
   <!-- Main Title -->
   <h2>Customer Customization Requests</h2>
 
-  <!-- Filter Panel -->
-  <div class="requests-filters">
-    <button>Pending Requests</button>
-    <button>Reviewed Requests</button>
-  </div>
-
   <!-- Table Wrapper for Scroll -->
   <div class="requests-table-wrapper">
     <table class="requests-table">
@@ -80,36 +74,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>2024-07-20</td>
-          <td>Alice Wonderland</td>
-          <td>Shoes</td>
-          <td>
-            alice@example.com<br>
-            +1 (123) 456-7890 (Email)
-          </td>
-          <td>Looking for a pair of red high-top sneakers ...</td>
-          <td><span class="status pending">Pending</span></td>
-          <td class="actions">
-            <button class="edit"></button>
-            <button class="delete"></button>
-          </td>
-        </tr>
-        <tr>
-          <td>2024-07-15</td>
-          <td>Bob The Builder</td>
-          <td>Sandals</td>
-          <td>
-            bob@example.com<br>
-            +1 (987) 654-3210 (Call)
-          </td>
-          <td>Need durable, waterproof sandals for hiking...</td>
-          <td><span class="status reviewed">Reviewed</span></td>
-          <td class="actions">
-            <button class="edit"></button>
-            <button class="delete"></button>
-          </td>
-        </tr>
+        <!-- Dynamic rows will be inserted here -->
       </tbody>
     </table>
   </div>
@@ -177,6 +142,7 @@
 </footer>
 
 <script type="module" src="/js/admin-customization-management.js"></script>
+<script type="module" src="/js/customization.js"></script>
 
 </body>
 </html>
