@@ -17,30 +17,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// ---------------------- NAV LINK HIGHLIGHT ----------------------
+// -------- Highlight nav link --------
   navLinks.forEach(link => {
     const linkPage = link.getAttribute("href").split("/").pop();
     if (linkPage === currentPage) link.classList.add("active");
   });
 
-  // ---------------------- USER ICON HIGHLIGHT ----------------------
-  if (currentPage === "admin-login.html" && userMenu) {
+  if (currentPage === "admin-login.html") 
     userMenu.classList.add("active");
-  }
 
-  // ---------------------- DROPDOWN TOGGLE ----------------------
   if (userMenu && userDropdown) {
     userMenu.addEventListener("click", () => {
       userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
     });
-
-    // Close dropdown if clicked outside
     document.addEventListener("click", (e) => {
       if (!userMenu.contains(e.target)) userDropdown.style.display = "none";
     });
   }
 
-  // ---------------------- MOBILE MENU TOGGLE ----------------------
   if (menuToggle && navMenu) {
     menuToggle.addEventListener("click", () => {
       navMenu.classList.toggle("active");

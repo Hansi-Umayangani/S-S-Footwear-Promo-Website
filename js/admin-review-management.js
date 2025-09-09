@@ -75,13 +75,100 @@ const emailInput = document.getElementById("email");
 const productInput = document.getElementById("product"); 
 const ratingInput = document.getElementById("rating");
 const reviewTextInput = document.getElementById("review-text");
+
+const uploadBox = document.getElementById("upload-box");
+const browseBtn = document.getElementById("browse-btn");
+const fileInput = document.getElementById("product-image");
 const imagePreview = document.getElementById("image-preview");
 const previewImg = document.getElementById("preview-img");
+
 const submitBtn = reviewForm?.querySelector(".submit-btn"); 
 const reviewsTableBody = document.getElementById("reviewsTableBody"); 
 
 let uploadedImageURL = "";
 let editingReviewId = null;
+
+// ---------------------- IMAGE UPLOAD (Cloudinary) ----------------------
+const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dvcmr9ojz/image/upload";
+const CLOUDINARY_UPLOAD_PRESET = "unsigned_preset"; // replace with your real preset
+
+
+// Trigger file input
+browseBtn.addEventListener("click", () => fileInput.click());
+
+// Handle file browse
+fileInput.addEventListener("change", (e) => {
+  if (e.target.files.length > 0) {
+    uploadImageToCloudinary(e.target.files[0]);
+  }
+});
+
+// Handle drag & drop
+uploadBox.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  uploadBox.classList.add("dragging");
+});
+uploadBox.addEventListener("dragleave", () => {
+  uploadBox.classList.remove("dragging");
+});
+uploadBox.addEventListener("drop", (e) => {
+  e.preventDefault();
+  uploadBox.classList.remove("dragging");
+
+  if (e.dataTransfer.files.length > 0) {
+    uploadImageToCloudinary(e.dataTransfer.files[0]);
+  }
+});
+
+// Upload to Cloudinary
+async function uploadImageToCloudinary(file) {
+  if (!file.type.startsWith("image/")) {
+    alert("Please select an image file.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+  try {
+    // Show uploading state
+    previewImg.style.display = "none";
+    imagePreview.style.display = "block";
+    imagePreview.querySelector("p")?.remove();
+
+    // Temporary loading text
+    const loadingText = document.createElement("p");
+    loadingText.textContent = "Uploading...";
+    loadingText.id = "uploadingText";
+    imagePreview.appendChild(loadingText);
+
+    const res = await fetch(CLOUDINARY_URL, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    if (data.secure_url) {
+      uploadedImageURL = data.secure_url;
+
+      // Show preview
+      previewImg.src = uploadedImageURL;
+      previewImg.style.display = "block";
+
+
+      document.getElementById("uploadingText")?.remove();
+    } else {
+      throw new Error(data.error?.message || "Cloudinary upload failed");
+    }
+  } catch (error) {
+    console.error("Upload error:", error);
+    alert("Image upload failed. Please try again.");
+    imagePreview.style.display = "none";
+    uploadedImageURL = "";
+  }
+}
+
 
 // ---------------------- FETCH AND DISPLAY REVIEWS ----------------------
 function loadReviews() {

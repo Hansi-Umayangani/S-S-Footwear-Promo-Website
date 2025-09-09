@@ -153,15 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutOption) {
     logoutOption.addEventListener("click", async (e) => {
     e.preventDefault();
-    try {
-      await signOut(auth);
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
-    }
-  });
-}
+      try {
+        await signOut(auth);
+        window.location.reload();
+      } catch (err) {
+        console.error(err);
+      }
+    });
   }
+}
 
 
 

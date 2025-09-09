@@ -13,6 +13,8 @@ const category = document.getElementById("category");
 const price = document.getElementById("price");
 const description = document.getElementById("description");
 const productsTbody = document.getElementById("products-tbody");
+const previewImg = document.getElementById("preview-img");
+const imagePreview = document.getElementById("image-preview");
 
 let uploadedImageURL = "";
 
@@ -76,8 +78,7 @@ const productsCollection = collection(db, "products");
 
 // ----------------------- CLOUDINARY WIDGET -----------------------
 function initCloudinary() {
-  const previewImg = document.getElementById("preview-img");
-  const imagePreview = document.getElementById("image-preview");
+  
   const uploadBox = document.getElementById("upload-box");
 
   console.log("Checking Cloudinary and uploadBox...");
