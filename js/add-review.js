@@ -39,3 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+    // -------- Mobile Menu Toggle --------
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+  }
+
