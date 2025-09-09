@@ -1,15 +1,14 @@
-import { auth } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { collection, getDocs, query, orderBy, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { collection, getDocs, query, orderBy, deleteDoc, doc, updateDoc } 
+  from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 // ------------------- DOM ELEMENTS -------------------
 const loginOption = document.getElementById("loginOption");
 const logoutOption = document.getElementById("logoutOption");
 const userMenu = document.getElementById("userMenu");
 const userDropdown = document.getElementById("userDropdown");
-const requestsTableBody = document.querySelector(".requests-table tbody");
-const btnPendingFilter = document.querySelector(".requests-filters button:nth-child(1)");
-const btnAcceptedFilter = document.querySelector(".requests-filters button:nth-child(2)");
+const requestsTableBody = document.getElementById("requestsTableBody");
 // Admin nav buttons
 const btnProducts = document.getElementById("btn-products");
 const btnReviews = document.getElementById("btn-reviews");
@@ -17,11 +16,10 @@ const btnCustomization = document.getElementById("btn-customization");
 
 // ------------------- DROPDOWN -------------------
 if (userMenu && userDropdown) {
-    userMenu.addEventListener("click", () => {
+  userMenu.addEventListener("click", () => {
     userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
   });
 
-  // Close dropdown if clicked outside
   document.addEventListener("click", (e) => {
     if (!userMenu.contains(e.target)) userDropdown.style.display = "none";
   });
@@ -29,7 +27,7 @@ if (userMenu && userDropdown) {
 
 // ------------------- AUTH -------------------
 onAuthStateChanged(auth, (user) => {
-  if (loginOption && logoutOption) { // check they exist
+  if (loginOption && logoutOption) {
     if (user) {
       loginOption.style.display = "none";
       logoutOption.style.display = "flex";
@@ -40,7 +38,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Logout
+// ------------------- LOGOUT -------------------
 if (logoutOption) {
   logoutOption.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -53,35 +51,34 @@ if (logoutOption) {
   });
 }
 
-
-// ------------------- ADMIN NAV HIGHLIGHT -------------------
+// ------------------- ADMIN NAV HIGHLIGHT & FETCH -------------------
 document.addEventListener("DOMContentLoaded", () => {
   const url = window.location.href;
 
-  if (url.includes("product-management.html")) {
-    btnProducts.classList.add("active");
-  } else if (url.includes("review-management.html")) {
-    btnReviews.classList.add("active");
-  } else if (url.includes("customization-management.html")) {
-    btnCustomization.classList.add("active");
-  }
+  const btnProductsPage = document.getElementById("btnProducts");
+  const btnReviewsPage = document.getElementById("btnReviews");
+  const btnCustomizationPage = document.getElementById("btnCustomization");
 
-  // Fetch requests after DOM is ready
-  fetchCustomizationRequests();
+  if (url.includes("product-management.html") && btnProductsPage) btnProductsPage.classList.add("active");
+  if (url.includes("review-management.html") && btnReviewsPage) btnReviewsPage.classList.add("active");
+  if (url.includes("customization-management.html") && btnCustomizationPage) btnCustomizationPage.classList.add("active");
+
+  // Fetch requests
+  if (requestsTableBody) fetchCustomizationRequests(requestsTableBody);
 });
 
-// ------------------- FETCH CUSTOMIZATION REQUESTS (FETCH & RENDER) -------------------
-async function fetchCustomizationRequests() {
-  if (!requestsTableBody) return;
+// ------------------- FETCH CUSTOMIZATION REQUESTS -------------------
+async function fetchCustomizationRequests(tableBody) {
+  if (!tableBody) return;
 
-  requestsTableBody.innerHTML = ""; // clear old rows
+  tableBody.innerHTML = ""; // clear old rows
 
   try {
     const q = query(collection(db, "customRequests"), orderBy("timestamp", "desc"));
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
-      requestsTableBody.innerHTML = `
+      tableBody.innerHTML = `
         <tr>
           <td colspan="7" style="text-align:center; padding:10px;">No requests found.</td>
         </tr>
@@ -91,21 +88,28 @@ async function fetchCustomizationRequests() {
 
     querySnapshot.forEach((docSnap) => {
       const request = docSnap.data();
+
+      // Ensure all fields are defined
       const date = request.timestamp?.toDate().toLocaleDateString() || "";
+      const customerName = request.customerName || "-";
+      const productType = request.productType || "-";
+      const emailAddress = request.emailAddress || "-";
+      const contactNumber = request.contactNumber || "";
+      const contactMethod = request.contactMethod || "";
+      const customDetails = request.customDetails || "-";
+      const status = request.status || "Pending";
 
       const row = document.createElement("tr");
       row.setAttribute("data-id", docSnap.id);
 
       row.innerHTML = `
         <td>${date}</td>
-        <td>${request.customerName || "-"}</td>
-        <td>${request.productType || "-"}</td>
-        <td>${request.emailAddress || "-"}<br>${request.contactNumber || ""} (${request.contactMethod || ""})</td>
-        <td>${request.customDetails || "-"}</td>
+        <td>${customerName}</td>
+        <td>${productType}</td>
+        <td>${emailAddress}<br>${contactNumber} (${contactMethod})</td>
+        <td>${customDetails}</td>
         <td>
-          <button class="status-btn ${request.status?.toLowerCase() || "pending"}">
-            ${request.status || "Pending"}
-          </button>
+          <button class="status-btn ${status.toLowerCase()}">${status}</button>
         </td>
         <td class="actions">
           <button class="delete" title="Delete">
@@ -114,23 +118,14 @@ async function fetchCustomizationRequests() {
         </td>
       `;
 
-      // Handle status toggle
+      // Status toggle
       const statusBtn = row.querySelector(".status-btn");
       statusBtn.addEventListener("click", async () => {
-        let newStatus;
-
-        if (statusBtn.classList.contains("pending")) {
-          newStatus = "Accepted"; 
-        } else {
-          newStatus = "Pending"; 
-        }
+        const currentStatus = statusBtn.textContent.toLowerCase();
+        const newStatus = currentStatus === "pending" ? "Accepted" : "Pending";
 
         try {
-          await updateDoc(doc(db, "customRequests", docSnap.id), {
-            status: newStatus
-          });
-
-          // Update UI
+          await updateDoc(doc(db, "customRequests", docSnap.id), { status: newStatus });
           statusBtn.textContent = newStatus;
           statusBtn.className = "status-btn " + newStatus.toLowerCase();
         } catch (err) {
@@ -138,26 +133,25 @@ async function fetchCustomizationRequests() {
         }
       });
 
-      // Attach delete handler
+      // Delete handler
       row.querySelector(".delete").addEventListener("click", async () => {
-        const confirmDelete = confirm("Are you sure you want to delete this request?");
-        if (!confirmDelete) return;
-
+        if (!confirm("Are you sure you want to delete this request?")) return;
         try {
           await deleteDoc(doc(db, "customRequests", docSnap.id));
-          row.remove(); // or re-fetch with fetchCustomizationRequests()
-          console.log("Request deleted:", docSnap.id);
+          row.remove();
         } catch (err) {
           console.error("Failed to delete request:", err);
         }
       });
 
- 
-
-      requestsTableBody.appendChild(row);
+      tableBody.appendChild(row);
     });
   } catch (err) {
     console.error("Failed to fetch requests:", err);
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="7" style="text-align:center; color:red;">Failed to load requests.</td>
+      </tr>
+    `;
   }
 }
-

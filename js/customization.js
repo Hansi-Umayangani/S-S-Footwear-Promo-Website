@@ -81,12 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       // Get form values
-      const customerName = document.getElementById("customerName")?.value.trim();
-      const contactNumber = document.getElementById("contactNumber")?.value.trim();
-      const emailAddress = document.getElementById("emailAddress")?.value.trim();
-      const productType = document.getElementById("productType")?.value.trim();
-      const customDetails = document.getElementById("customDetails")?.value.trim();
-      const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value;
+      const customerName = document.getElementById("customerName")?.value.trim() || "";
+      const contactNumber = document.getElementById("contactNumber")?.value.trim() || "";
+      const emailAddress = document.getElementById("emailAddress")?.value.trim() || "";
+      const productType = document.getElementById("productType")?.value.trim() || "";
+      const customDetails = document.getElementById("customDetails")?.value.trim() || "";
+      const contactMethod = document.querySelector('input[name="contactMethod"]:checked')?.value || "";
 
       try {
         // Add a new document in the 'customRequests' collection

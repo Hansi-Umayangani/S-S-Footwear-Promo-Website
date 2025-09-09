@@ -16,12 +16,12 @@
     <img src="../../assets/images/Brand_Logo.png" alt="Brand Logo" class="brand-logo">
   </div>
   <nav class="nav-links" id="nav-menu">
-    <a href="#">Home</a>
-    <a href="#">Products</a>
-    <a href="#">Customization</a>
-    <a href="#">Reviews</a>
-    <a href="#">Contact Us</a>
-  </nav>
+  <a href="../customer/home.html">Home</a>
+  <a href="../customer/products.html">Products</a>
+  <a href="../customer/customization.html">Customization</a>
+  <a href="../customer/reviews.html">Reviews</a>
+  <a href="../customer/contact.html">Contact Us</a>
+</nav>
   <div class="menu-toggle" id="menu-toggle">☰</div>
 </header>
 
@@ -43,11 +43,11 @@
       <!-- LEFT SIDE: Overall Rating -->
       <div class="analysis-left">
         <div class="rating-table">
-          <div class="rate">4.8</div>
-          <div class="stars">★★★★★</div>
-          <div class="based-on-reviews">Based On 5 Reviews</div>
+          <div class="rate" id="overall-rate">4.8</div>
+          <div class="stars" id="overall-stars">★★★★★</div>
+          <div class="based-on-reviews" id="reviews-count">Based On 5 Reviews</div>
         </div>
-        <p class="percentage">100% Of Customers Recommend S&S Footwear</p>
+        <p class="percentage" id="recommendation-percentage">100% Of Customers Recommend S&S Footwear</p>
       </div>
 
       <!-- RIGHT SIDE: Rating Distribution -->
@@ -55,27 +55,27 @@
         <div class="rating-bar-row">
           <span>5★</span>
           <div class="bar-container"><div class="bar-fill" style="width:90%"></div></div>
-          <span>4</span>
+          <span class="count" id="count-5">0</span>
         </div>
         <div class="rating-bar-row">
           <span>4★</span>
           <div class="bar-container"><div class="bar-fill" style="width:10%"></div></div>
-          <span>1</span>
+          <span class="count" id="count-4">0</span>
         </div>
         <div class="rating-bar-row">
           <span>3★</span>
           <div class="bar-container"><div class="bar-fill" style="width:0%"></div></div>
-          <span>0</span>
+          <span class="count" id="count-3">0</span>
         </div>
         <div class="rating-bar-row">
           <span>2★</span>
           <div class="bar-container"><div class="bar-fill" style="width:0%"></div></div>
-          <span>0</span>
+          <span class="count" id="count-2">0</span>
         </div>
         <div class="rating-bar-row">
           <span>1★</span>
           <div class="bar-container"><div class="bar-fill" style="width:0%"></div></div>
-          <span>0</span>
+          <span class="count" id="count-1">0</span>
         </div>
       </div>
     </div>
@@ -136,8 +136,8 @@
     <h2>Ready to Find Your Perfect Pair?</h2>
     <p>Browse our collection or request a custom design tailored just for you.</p>
     <div class="cta-buttons">
-      <button class="btn">BROWSE PRODUCTS</button>
-      <button class="btn">CUSTOM REQUEST</button>
+      <button class="btn" onclick="window.location.href=`/pages/customer/products.html`">BROWSE PRODUCTS</button>
+      <button class="btn" onclick="window.location.href=`/pages/customer/customization.html`">CUSTOM REQUEST</button>
     </div>
   </section>
 
@@ -170,22 +170,31 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Customization</a></li>
-        <li><a href="#">Reviews</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="../../pages/customer/home.html">Home</a></li>
+        <li><a href="../../pages/customer/products.html">Products</a></li>
+        <li><a href="../../pages/customer/customization.html">Customization</a></li>
+        <li><a href="../../pages/customer/reviews.html">Reviews</a></li>
+        <li><a href="../../pages/customer/contact.html">Contact</a></li>
       </ul>
     </div>
 
     <div class="contact-info">
       <h4>Contact Info</h4>
-      <p><img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon"> 0757356506</p>
-      <p><img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
+      <p>
+        <img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon">
+        <a href="tel:0757356506">0757356506</a>
+      </p>
+      <p>
+        <img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
         <a href="mailto:ss01.footwear@gmail.com">ss01.footwear@gmail.com</a>
       </p>
-      <p><img src="../../assets/icons/Header-Footer_Icons/location.png" alt="Location" class="contact-icon">
-        S&S Shoes,<br>No.14, Madolompitiya Road,<br>Pallewela.
+      <p>
+        <img src="../../assets/icons/Header-Footer_Icons/location.png" alt="Location" class="contact-icon">
+        <a href="https://maps.app.goo.gl/aLB4kqipQs7XuvLc8/" target="_blank">
+        S&S Shoes,<br>
+        No.14, Madolompitiya Road,<br>
+        Pallewela.
+        </a>
       </p>
     </div>
   </div>
@@ -193,6 +202,8 @@
     © 2025 S&S Footwear. All Rights Reserved.
   </div>
 </footer>
+
+<script type="module" src="/js/reviews.js"></script>
 
 </body>
 </html>
