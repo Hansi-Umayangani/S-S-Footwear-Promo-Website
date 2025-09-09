@@ -88,3 +88,60 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   initCloudinary();
 
+    if (reviewForm) {
+  reviewForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("customer-name")?.value.trim() || "";
+    const email = document.getElementById("email")?.value.trim() || "";
+    const product = document.getElementById("product")?.value.trim() || "";
+    const rating = parseInt(ratingInput?.value || "0", 10);
+    const reviewText = document.getElementById("review-text")?.value.trim() || "";
+
+    if (!name || !email || !product || !rating || !reviewText) {
+      alert("⚠️ Please fill in all required fields.");
+      return;
+    }
+    if (Number.isNaN(rating) || rating < 1 || rating > 5) {
+      alert("⚠️ Rating must be between 1 and 5.");
+      return;
+    }
+
+    const submitBtn = reviewForm.querySelector(".submit-btn");
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+    }
+
+    try {
+      await addDoc(collection(db, "reviews"), {
+        name,
+        email,
+        product,
+        rating,
+        reviewText,
+        image: uploadedImageURL || "",
+        createdAt: serverTimestamp(),
+      });
+
+      // Show success message but stay on the same page
+      alert("✅ Your review has been submitted! Thank you.");
+
+      // Optional: reset form
+      reviewForm.reset();
+      if (imagePreview) imagePreview.style.display = "none";
+      uploadedImageURL = "";
+
+    } catch (error) {
+      console.error("Error adding review:", error);
+      alert("❌ Failed to submit review. Please try again.");
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "ADD REVIEW";
+      }
+    }
+  });
+  }
+});
+
