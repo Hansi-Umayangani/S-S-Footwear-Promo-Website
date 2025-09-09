@@ -477,30 +477,6 @@ section {
   line-height: 1.5;
 }
 
-/* ---------------- Small Button ---------------- */
-.btn.small {
-  background: #DDA463;
-  color: black;
-  font-weight: 600;
-  font-size: 0.9rem;
-  font-family: "Open Sans", sans-serif;
-  padding: 0.4rem 1rem;
-  border: none;
-  border-radius: 20px;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 1.5rem;
-}
-
-.btn.small:hover {
-  background: #cc7818ce;
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
-}
-
 
 /* View All Products Button */
 .btn.view-all {
