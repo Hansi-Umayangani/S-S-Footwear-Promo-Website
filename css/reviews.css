@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------------- Reset & Base ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -56,7 +56,6 @@ img {
   z-index: 1000;
 }
 
-/* Right-side container */
 .nav-right {
   display: flex;
   align-items: center;
@@ -93,8 +92,7 @@ img {
 
 /* Highlight active nav link */
 .nav-links a.active {
-  color: #d2a06a;
-  
+  color: #d2a06a;  
   font-weight: bold;
   border-bottom: 2px solid #d2a06a;
 }
@@ -219,6 +217,25 @@ main {
     line-height: 0.5; 
     margin-top: 15px;
 }
+
+.stars .star {
+  display: inline-block;
+  position: relative;
+  color: #ccc;
+}
+
+.stars .star.full {
+  color: #ffc107;
+}
+
+.stars .star.half {
+  color: #ffc107; 
+  background: linear-gradient(to right, #ffc107 50%, #ccc 50%);
+  background-clip: text; 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 .based-on-reviews { 
     font-size: (0.75rem, 1.2vw, 0.95rem); 

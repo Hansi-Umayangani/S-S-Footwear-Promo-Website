@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------------- Reset & Base ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -41,7 +41,7 @@ img {
   display: block;
 }
 
-/* ---------------- Navbar / Header ---------------- */
+/* -------------------- Navbar -------------------- */
 .navbar {
   background-color: #4b2e1e;
   color: #FFF9F4;
@@ -56,7 +56,6 @@ img {
   z-index: 1000;
 }
 
-/* Right-side container */
 .nav-right {
   display: flex;
   align-items: center;
@@ -101,7 +100,6 @@ img {
   color: #d2a06a;
 }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   font-size: 1.5rem;
@@ -121,7 +119,6 @@ img {
   width: 30px;
 }
 
-/* Dropdown Menu */
 .user-menu .dropdown {
   display: none;
   position: absolute;
@@ -154,9 +151,10 @@ img {
   margin-right: 8px;
 }
 
+/*-------------------- Main Content -----------------------*/
+
 /* ---------------- Dashboard Title ---------------- */
 
-/* Dashboard Title */
 .dashboard-title {
   text-align: center;
   font-family: 'Playfair Display', serif;
@@ -164,7 +162,8 @@ img {
   margin-bottom: 30px;
   margin-top: 6%;
 }
-/* ---------------- Top Nav Buttons ---------------- */
+
+/* ---------------- Admin Navigation Buttons ---------------- */
 .admin-nav {
   display: flex;
   flex-wrap: wrap;
@@ -319,7 +318,6 @@ textarea::placeholder {
     color: #888;
 }
 
-/* Form headings inside container */
 .product-form-container h3,
 .product-form-container h4,
 .product-form-container h5 {
@@ -385,7 +383,6 @@ textarea::placeholder {
   object-fit: cover;
 }
 
-
 .submit-btn {
     width: 100%;
     padding: 10px 0;
@@ -429,7 +426,6 @@ textarea::placeholder {
   color: #2b1b0f;
 }
 
-/* Table Wrapper for Scroll */
 .products-table-wrapper {
   width: 100%;
   max-height: 400px;
@@ -447,8 +443,6 @@ textarea::placeholder {
   font-family: 'Open Sans', sans-serif;
 }
 
-
-/* Table headers and cells */
 .products-table th,
 .products-table td {
   padding: 12px 15px;
@@ -459,7 +453,6 @@ textarea::placeholder {
   text-align: center;
 }
 
-/* Table headers */
 .products-table th {
   position: sticky;
   top: 0; 
@@ -469,7 +462,7 @@ textarea::placeholder {
   text-align: center;
 }
 
-/* First column: Product Image box */
+/* Product Image box */
 .products-table td:nth-child(1),
 .products-table th:nth-child(1) {
   text-align: center;
@@ -502,7 +495,8 @@ textarea::placeholder {
   border-radius: 6px;
 }
 
-/* Name, Category, Price columns: center content */
+/* Name, Category, Price columns*/
+
 .products-table td:nth-child(2),
 .products-table td:nth-child(3),
 .products-table td:nth-child(4),
@@ -524,7 +518,6 @@ textarea::placeholder {
   padding: 8px;
 }
 
-/* Flex container for action buttons */
 .actions {
   display: flex;
   justify-content: center;
@@ -532,7 +525,6 @@ textarea::placeholder {
   gap: 6px;
 }
 
-/* Buttons styling */
 .actions button {
   width: clamp(24px, 3vw, 32px);
   height: clamp(24px, 3vw, 32px);
@@ -547,13 +539,11 @@ textarea::placeholder {
   justify-content: center;
 }
 
-/* Hover effect */
 .actions-cell button:hover {
   background-color: #ffe0c6;
   transform: scale(1);
 }
 
-/* Specific icons */
 .actions button.edit {
   background-image: url("../assets/icons/editing.png");
 }

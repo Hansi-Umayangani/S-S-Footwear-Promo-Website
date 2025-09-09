@@ -32,8 +32,8 @@
         <h1>Step Into <br>Comfort & Style</h1>
         <p>With S&S Footwear, discover stylish specials crafted for every walk of life. From office to weekend, they keep you on your feet in style.</p>
         <div class="hero-buttons">
-        <a href="#" class="btn">EXPLORE NOW</a>
-        <a href="#" class="btn secondary">CUSTOM ORDER</a>
+        <button class="btn" onclick="window.location.href=`/pages/customer/products.html`">EXPLORE NOW</button>
+        <button class="btn" onclick="window.location.href=`/pages/customer/customization.html`">CUSTOM ORDER</button>
         </div>
     </div>
     </section>
@@ -102,56 +102,8 @@
     <section class="products">
         <h2>Featured Products</h2>
         <p>Discover our most popular & trending footwear collections</p>
-        <div class="product-list">
-        <!-- Product 1 -->
-        <div class="product-card">
-            <img src="../../assets/images/Product_Images/Elite_Black_Dress_Shoes.jpg" alt="">
-            <h4>Elite Black Dress Shoes</h4>
-            <p>Sleek black leather formal shoes with perforated details for a modern touch.</p>
-            <a href="#" class="btn small">View Details</a>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-            <img src="../../assets/images/Product_Images/Classic_Mens_Loafers.jpg" alt="">
-            <h4>Classic Men's Loafers</h4>
-            <p>Sophisticated brown leather loafers for a sharp and timeless formal look.</p>
-            <a href="#" class="btn small">View Details</a>
-        </div>
-        
-        <!-- Product 3 -->
-        <div class="product-card">
-            <img src="../../assets/images/Product_Images/Chic_White_Heels.jpg" alt="">
-            <h4>Chic White Heels</h4>
-            <p>Stylish white heels with a low block heel, perfect for any occasion.</p>
-            <a href="#" class="btn small">View Details</a>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <img src="../../assets/images/Product_Images/Blush_Pink_Casual_Loafers.jpg" alt="">
-            <h4>Blush Pink Casual Loafers</h4>
-            <p>Soft pink loafers with a comfortable design, ideal for everyday casual wear.</p>
-            <a href="#" class="btn small">View Details</a>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-            <img src="../../assets/images/Product_Images/Elegant_Ruffled_Sliders.jpg" alt="">
-            <h4>Elegant Ruffled Sliders</h4>
-            <p>Fashionable purple matt sliders with a chic frilled top and soft sole.</p>
-            <a href="#" class="btn small">View Details</a>
-        </div>
-        
-        <!-- Product 6 -->
-        <div class="product-card">
-            <img src="../../assets/images/Product_Images/Black_Kids_Velcro_Shoes.jpg" alt="">
-            <h4>Black Kids' Velcro Shoes</h4>
-            <p>Durable and comfortable black shoes with easy-to-use velcro straps for kids.</p>
-            <a href="#" class="btn small">View Details</a>
-        </div>
-        </div>
-        <a href="#" class="btn view-all">VIEW ALL PRODUCTS</a>
+        <div class="product-list"></div>
+        <button class="btn view-all" onclick="window.location.href=`/pages/customer/products.html`">VIEW ALL PRODUCTS</button>
     </section>
 
     <!-- Call to Action Section -->
@@ -159,8 +111,8 @@
         <h2>Ready to Find Your Perfect Pair?</h2>
         <p>Browse our collection or request a custom design tailored just for you</p>
         <div class="cta-buttons">
-            <a href="#" class="btn">BROWSE PRODUCTS</a>
-            <a href="#" class="btn">CUSTOMER REQUEST</a>
+            <button class="btn" onclick="window.location.href=`/pages/customer/products.html`">BROWSE PRODUCTS</button>
+        <button class="btn" onclick="window.location.href=`/pages/customer/customization.html`">CUSTOM REQUESTS</button>
         </div>
     </section>
 </main>
@@ -186,11 +138,12 @@
         <div class="footer-links">
         <h4>Quick Links</h4>
         <ul>
-            <li><a href="../customer/home.html">Home</a></li>
-            <li><a href="../customer/products.html">Products</a></li>
-            <li><a href="../customer/customization.html">Customization</a></li>
-            <li><a href="../customer/reviews.html">Reviews</a></li>
-            <li><a href="../customer/contact.html">Contact</a></li>
+            <li><a href="../../pages/customer/home.html">Home</a></li>
+            <li><a href="../../pages/customer/products.html">Products</a></li>
+            <li><a href="../../pages/customer/customization.html">Customization</a></li>
+            <li><a href="../../pages/customer/reviews.html">Reviews</a></li>
+            <li><a href="../../pages/customer/contact.html">Contact</a></li>
+
         </ul>
         </div>
 
@@ -199,7 +152,7 @@
         <h4>Contact Info</h4>
         <p>
         <img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon">
-        <a href="tel:0757356506">0757356506</a>
+        <a href="tel:0753755005">0753755005</a>
         </p>
         <p>
             <img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
@@ -221,6 +174,9 @@
         © 2025 S&S Footwear. All Rights Reserved.
     </div>
 </footer>
+
+<script type="module" src="../../js/home.js"></script>
+<script type="module" src="../../js/products.js"></script>
   
 </body>
 </html>

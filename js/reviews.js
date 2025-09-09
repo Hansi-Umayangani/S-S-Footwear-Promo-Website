@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderStars(rating) {
     let stars = "";
     for (let i = 1; i <= 5; i++) {
-      stars += '<span class="star ${i <= rating ? "filled" : ""}">★</span>';
+      stars += `<span class="star ${i <= rating ? "filled" : ""}">★</span>`;
     }
     return stars;
   }
@@ -107,38 +107,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // -------- Update Review Analysis --------
 function updateReviewAnalysis(reviews) {
-  const totalReviews = reviews.length;
-  if (totalReviews === 0) return;
+  if (!reviews || reviews.length === 0) return;
 
+  // Average rating
   let sumRating = 0;
+  let validRatingCount = 0;
   const starCount = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
 
   reviews.forEach(r => {
-    const rating = r.rating;
-    sumRating += rating;
-    if (starCount[rating] !== undefined) starCount[rating]++;
+    let rating = Number(r.rating);
+    if (isNaN(rating) || rating < 0) return;
+
+    const safeRating = Math.min(Math.max(rating, 1), 5);
+    sumRating += safeRating;
+    validRatingCount++;
+
+    starCount[safeRating] = (starCount[safeRating] || 0) + 1;
   });
 
+  if (validRatingCount === 0) return;
+
   // Average rating
-  const averageRating = (sumRating / totalReviews).toFixed(1);
+  const averageRating = Number((sumRating / validRatingCount).toFixed(1));
   overallRateEl.textContent = averageRating;
-  reviewsCountEl.textContent = `Based on ${totalReviews} review${totalReviews > 1 ? 's' : ''}`;
+  reviewsCountEl.textContent = `Based on ${validRatingCount} review${validRatingCount > 1 ? 's' : ''}`;
 
   // Stars
-  const fullStars = Math.floor(averageRating);
-  const halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
-  overallStarsEl.textContent = "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(5 - fullStars - halfStar);
+  let fullStars = Math.floor(averageRating);
+  let halfStar = averageRating - fullStars >= 0.5 ? 1 : 0;
+  fullStars = Math.min(Math.max(fullStars, 0), 5);
+  halfStar = halfStar && fullStars < 5 ? 1 : 0;
 
-  // Recommendation % (example: % of 4★+5★ ratings)
-  const recommended = starCount[5] + starCount[4];
-  const recommendationPercent = Math.round((recommended / totalReviews) * 100);
-  recommendationEl.textContent = `${recommendationPercent}% Of Customers Recommend S&S Footwear`;
+   if (overallStarsEl)
+  overallStarsEl.textContent =
+    "★".repeat(fullStars) + (halfStar ? "½" : "") + "☆".repeat(5 - fullStars - halfStar);
+  
+  // Recommendation
+  const recommended = (starCount[5] || 0) + (starCount[4] || 0);
+  const recommendationPercent = Math.round((recommended / validRatingCount) * 100);
+  if (recommendationEl) recommendationEl.textContent = `${recommendationPercent}% Of Customers Recommend S&S Footwear`;
 
   // Update bars
   for (let i = 5; i >= 1; i--) {
-    const percent = ((starCount[i] / totalReviews) * 100).toFixed(0);
-    barFills[i].style.width = `${percent}%`;
-    barCounts[i].textContent = starCount[i];
+    const percent = ((starCount[i] || 0) / validRatingCount * 100).toFixed(0);
+    if (barFills[i]) barFills[i].style.width = `${percent}%`;
+    if (barCounts[i]) barCounts[i].textContent = starCount[i] || 0;
   }
 }
 

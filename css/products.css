@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------------- Reset & Base ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -41,7 +41,7 @@ img {
   display: block;
 }
 
-/* ---------------- Navbar / Header ---------------- */
+/* ---------------- Navbar ---------------- */
 .navbar {
   background-color: #4b2e1e;
   color: #FFF9F4;
@@ -56,7 +56,6 @@ img {
   z-index: 1000;
 }
 
-/* Right-side container */
 .nav-right {
   display: flex;
   align-items: center;
@@ -228,36 +227,10 @@ img {
 
 /* Price */
 .product-card .price {
-  font-weight: bold;
+  font-weight: semi-bold;
   font-size: 1rem;
   margin-bottom: 1rem;
   color: #3d2e1e;
-}
-
-/* Request Button */
-.request-btn {
-  background: #DDA463;
-  color: black;
-  font-weight: 300;
-  font-size: 0.9rem;
-  font-family: "Open Sans", sans-serif;
-  padding: 0.4rem 1rem;
-  border: none;
-  border-radius: 20px;
-  display: inline-block;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 1rem;
-}
-
-.request-btn:hover {
-  background: #cc7818ce;
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
-  color: white;
 }
 
 /* Responsive */

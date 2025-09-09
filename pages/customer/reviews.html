@@ -27,7 +27,7 @@
 
 <main>
 
-  <!-- TITLE -->
+  <!-- Heading -->
   <section class="review-title">
     <h2>Customer Reviews</h2>
     <p>Don't just take our word for it. Here's what our valued customers have to say about their S&S Footwear experience.</p>
@@ -36,7 +36,7 @@
 <!-- CUSTOMER REVIEWS SECTION -->
 <section class="reviews-section">
 
-  <!-- REVIEW ANALYSIS (Sticky/Fixed Part) -->
+  <!-- REVIEW ANALYSIS -->
   <div class="review-analysis-box">
     <div class="review-analysis-container">
       
@@ -81,55 +81,10 @@
     </div>
   </div>
 
-  <!-- REVIEWS (Scrollable Part) -->
-  <div class="scrollable-reviews">
-    <div class="reviews-container">
-
-      <!-- Review 1 -->
-      <article class="review-card">
-        <div class="review-header">
-          <div class="quote-icon">“</div>
-          <div class="reviewer-info">
-            <span class="reviewer-name">Sarah Johnson</span>
-            <span class="product-name">Custom High Heels</span>
-            <span class="review-time">2 weeks ago</span>
-          </div>
-          <div class="rating-stars">
-            <span class="star filled">★</span><span class="star filled">★</span>
-            <span class="star filled">★</span><span class="star filled">★</span>
-            <span class="star filled">★</span>
-          </div>
-        </div>
-        <p class="review-text">
-          Absolutely love my custom heels from S&S Footwear! The fit is perfect and the quality is outstanding. I've received so many compliments. Will definitely be ordering more!
-        </p>
-      </article>
-
-      <!-- Review 2 -->
-      <article class="review-card">
-        <div class="review-header">
-          <div class="quote-icon">“</div>
-          <div class="reviewer-info">
-            <span class="reviewer-name">Emily Rodriguez</span>
-            <span class="product-name">Handmade Sandals</span>
-            <span class="review-time">3 weeks ago</span>
-          </div>
-          <div class="rating-stars">
-            <span class="star filled">★</span><span class="star filled">★</span>
-            <span class="star filled">★</span><span class="star filled">★</span>
-            <span class="star">★</span>
-          </div>
-        </div>
-        <p class="review-text">
-          I was looking for comfortable sandals for my vacation and these are perfect! They're stylish enough for dinner out but comfortable enough for walking all day. Great service too!
-        </p>
-      </article>
-
-    </div>
+  <div class="reviews-container" id="reviews-container">
+    <!-- Reviews will be dynamically inserted here -->
   </div>
-
 </section>
-
 
   <!-- CTA SECTION -->
   <section class="cta-section">
@@ -146,7 +101,7 @@
   <h2>Share Your Experience</h2>
   <p>Have you purchased from S&S Footwear? We’d love to hear about your experience!</p>
   <div class="share-buttons">
-    <button class="btn">WRITE A REVIEW</button>
+    <button class="btn" onclick="window.location.href=`/pages/customer/add-review.html`">WRITE A REVIEW</button>
   </div>
 </section>
 
@@ -182,7 +137,7 @@
       <h4>Contact Info</h4>
       <p>
         <img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon">
-        <a href="tel:0757356506">0757356506</a>
+        <a href="tel:0753755005">0753755005</a>
       </p>
       <p>
         <img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
@@ -204,6 +159,7 @@
 </footer>
 
 <script type="module" src="/js/reviews.js"></script>
+<script type="module" src="/js/admin-customization-management.js"></script>
 
 </body>
 </html>
