@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const reviewForm = document.querySelector(".review-form");
 const reviewerNameInput = document.getElementById("reviewer-name"); 
 const emailInput = document.getElementById("email");
-const productInput = document.getElementById("product"); 
+const productInput = document.getElementById("product-name"); 
 const ratingInput = document.getElementById("rating");
 const reviewTextInput = document.getElementById("review-text");
 
@@ -253,6 +253,7 @@ async function handleEditReview(id) {
     reviewerNameInput.value = review.name || "";
     ratingInput.value = review.rating || "";
     reviewTextInput.value = review.reviewText || "";
+    productInput.value = review.product || "";
 
     // Image preview
     if (review.image) {
@@ -304,6 +305,7 @@ reviewForm.addEventListener("submit", async (e) => {
     name: (reviewerNameInput.value || "").trim(),
     rating: Number(ratingInput.value) || 0,
     reviewText: (reviewTextInput.value || "").trim(),
+    product: (productInput.value || "").trim(),
     image: uploadedImageURL || "",
     createdAt: serverTimestamp(),
   };
