@@ -46,3 +46,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ---------- Add Review form + Cloudinary ----------
+  const reviewForm = document.querySelector(".review-form");
+  const uploadBox = document.getElementById("upload-box");
+  const browseBtn = document.getElementById("browse-btn");
+  const imagePreview = document.getElementById("image-preview");
+  const previewImg = document.getElementById("preview-img");
+  const ratingInput = document.getElementById("rating");
+  let uploadedImageURL = "";
+
+  function initCloudinary() {
+    if (!window.cloudinary || !uploadBox) {
+      console.warn("Cloudinary widget not available or uploadBox missing.");
+      return;
+    }
+
+    const widget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: "dvcmr9ojz",          // <-- your cloud name
+        uploadPreset: "unsigned_preset", // <-- your unsigned preset
+        multiple: false,
+        folder: "reviews",
+      },
+      (err, result) => {
+        if (err) {
+          console.error("Cloudinary upload error:", err);
+          return;
+        }
+        if (result && result.event === "success") {
+          uploadedImageURL = result.info.secure_url;
+          if (previewImg && imagePreview) {
+            previewImg.src = uploadedImageURL;
+            imagePreview.style.display = "block";
+          }
+        }
+      }
+    );
+
+    uploadBox.addEventListener("click", () => widget.open());
+    if (browseBtn) browseBtn.addEventListener("click", () => widget.open());
+  }
+  initCloudinary();
+
