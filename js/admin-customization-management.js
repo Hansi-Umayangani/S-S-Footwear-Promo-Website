@@ -145,7 +145,7 @@ async function fetchCustomizationRequests() {
 
         try {
           await deleteDoc(doc(db, "customRequests", docSnap.id));
-          row.remove(); // or re-fetch with fetchCustomizationRequests()
+          row.remove(); 
           console.log("Request deleted:", docSnap.id);
         } catch (err) {
           console.error("Failed to delete request:", err);
