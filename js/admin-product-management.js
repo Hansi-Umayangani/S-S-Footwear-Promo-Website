@@ -12,9 +12,6 @@ const productName = document.getElementById("product-name");
 const category = document.getElementById("category");
 const price = document.getElementById("price");
 const description = document.getElementById("description");
-const previewImg = document.getElementById("preview-img");
-const imagePreview = document.getElementById("image-preview");
-const uploadBox = document.getElementById("upload-box");
 const productsTbody = document.getElementById("products-tbody");
 
 let uploadedImageURL = "";
@@ -79,6 +76,14 @@ const productsCollection = collection(db, "products");
 
 // ----------------------- CLOUDINARY WIDGET -----------------------
 function initCloudinary() {
+  const previewImg = document.getElementById("preview-img");
+  const imagePreview = document.getElementById("image-preview");
+  const uploadBox = document.getElementById("upload-box");
+
+  console.log("Checking Cloudinary and uploadBox...");
+  console.log("window.cloudinary:", window.cloudinary);
+  console.log("uploadBox:", uploadBox);
+  
   if (!window.cloudinary || !uploadBox) {
     console.error("Cloudinary widget not loaded or uploadBox missing.");
     return;
@@ -105,7 +110,9 @@ function initCloudinary() {
 
   uploadBox.addEventListener("click", () => widget.open());
 }
+
 let editProductId = null;
+
 // ----------------------- FORM SUBMISSION -----------------------
 function initProductForm() {
   if (!productForm) return;
@@ -233,15 +240,13 @@ async function loadProducts() {
   }
 }
 
-
 // ----------------------- INITIALIZE -----------------------
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Admin Product Management JS Loaded");
-
+// admin-product-management.js
+export default function initAdminProductManagement() {
   initAuth();
   initDropdown();
   highlightNav();
   initCloudinary();
   initProductForm();
-});
+}
 

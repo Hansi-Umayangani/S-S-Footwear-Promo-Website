@@ -6,7 +6,6 @@
   <title>S&S Footwear - Admin Product Management</title>
   <link rel="stylesheet" href="../../css/admin-product-management.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -191,7 +190,24 @@
   </div>
 </footer>
 
-<script type="module" src="../../js/admin-product-management.js"></script>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+<script type="module">
+  import initAdminProductManagement from './../../js/admin-product-management.js';
+
+  function waitForCloudinary(callback) {
+    const interval = setInterval(() => {
+      if (window.cloudinary) {
+        clearInterval(interval);
+        callback();
+      }
+    }, 50);
+  }
+
+  waitForCloudinary(() => {
+    initAdminProductManagement(); // call your main function
+  });
+</script>
 
 </body>
 </html>
