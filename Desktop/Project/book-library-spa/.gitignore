@@ -1,0 +1,11 @@
+# Windows system files
+Thumbs.db
+Desktop.ini
+*.tmp
+*.log
+
+# VSCode
+.vscode/
+
+# Node modules
+node_modules/
