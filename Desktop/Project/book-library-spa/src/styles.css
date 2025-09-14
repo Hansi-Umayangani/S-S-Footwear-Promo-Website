@@ -1,0 +1,21 @@
+:root{
+--accent:#6f42c1;
+--muted:#6c757d;
+}
+body{
+background: linear-gradient(180deg,#f8f9fa 0%, #ffffff 40%);
+font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+.hero{
+background: linear-gradient(90deg, rgba(111,66,193,0.12), rgba(111,66,193,0.04));
+padding: 3rem 0;
+}
+.site-title{font-weight:700;color:var(--accent)}
+.book-card{border:0; border-radius: .75rem; overflow: hidden; box-shadow: 0 6px 20px rgba(15,15,20,0.06)}
+.card-body-small{padding: .9rem}
+.book-cover{height:200px; object-fit:cover}
+.badge-category{background: rgba(111,66,193,0.12); color: var(--accent); font-weight:600}
+.footer{padding:2rem 0; color:var(--muted); text-align:center}
+@media (max-width: 576px) {
+.book-cover { height: 160px }
+}
