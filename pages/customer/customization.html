@@ -152,15 +152,15 @@
     <div class="contact-info">
       <h4>Contact Info</h4>
       <p>
-        <img src="../../assets/icons/Button_Icons/telephone.png" alt="Phone" class="contact-icon">
+        <img src="../../assets/icons/Header-Footer_Icons/phone.png" alt="Phone" class="contact-icon">
         <a href="tel:0753755005">0753755005</a>
       </p>
       <p>
-        <img src="../../assets/icons/Button_Icons/e-mail.png" alt="Email" class="contact-icon">
+        <img src="../../assets/icons/Header-Footer_Icons/mail.png" alt="Email" class="contact-icon">
         <a href="mailto:ss01.footwear@gmail.com">ss01.footwear@gmail.com</a>
       </p>
       <p>
-        <img src="../../assets/icons/Contact_Page_Icons/location (1).png" alt="Location" class="contact-icon">
+        <img src="../../assets/icons/Header-Footer_Icons/location.png" alt="Location" class="contact-icon">
         <a href="https://maps.app.goo.gl/aLB4kqipQs7XuvLc8/" target="_blank">
         S&S Shoes,<br>
         No.14, Madolompitiya Road,<br>
@@ -173,12 +173,29 @@
 
   <!-- Bottom Bar -->
   <div class="footer-bottom">
-    © 2025 S&S Footwear. All Rights Reserved.
+    © 2025 S&S Footwear. All Rights Reserved.<br/>
+
+        <a id="admin-link" href="../admin/login.html" style="font-size:12px; color:#7a5a3d; display:none;">
+            ----------
+        </a>
   </div>
 </footer>
 
 <script type="module" src="/js/customization.js"></script>
 <script type="module" src="/js/admin-customization-management.js"></script>
+
+<script type="module">
+import { auth } from "../../js/firebase-config.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+const ADMIN_EMAILS = ["gimhanihansika2020@gmail.com"];
+
+onAuthStateChanged(auth, (user) => {
+  if (user && ADMIN_EMAILS.includes(user.email)) {
+    document.getElementById("admin-link").style.display = "inline";
+  }
+});
+</script>
   
 </body>
 </html>
