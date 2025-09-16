@@ -410,17 +410,24 @@ section {
   max-width: 1700px;
 }
 
-/* Large Desktop (>=1200px) → 6 cards per row */
-@media (min-width: 1200px) {
+/* Large Desktop (>=1780px) → 6 cards per row */
+@media  (min-width: 1780px) {
   .product-list {
     grid-template-columns: repeat(6, 250px);
+  }
+}
+
+/* Large Desktop (>=1200px) → 6 cards per row */
+@media (min-width: 1200px) and (max-width: 1780px) {
+  .product-list {
+    grid-template-columns: repeat(4, 250px);
   }
 }
 
 /* Desktop / Laptop (992px – 1199px) → 4 cards per row */
 @media (min-width: 992px) and (max-width: 1199px) {
   .product-list {
-    grid-template-columns: repeat(4, 250px);
+    grid-template-columns: repeat(3, 250px);
   }
 }
 
