@@ -55,13 +55,16 @@ if (logoutOption) {
 document.addEventListener("DOMContentLoaded", () => {
   const url = window.location.href;
 
-  const btnProductsPage = document.getElementById("btnProducts");
-  const btnReviewsPage = document.getElementById("btnReviews");
-  const btnCustomizationPage = document.getElementById("btnCustomization");
-
-  if (url.includes("product-management.html") && btnProductsPage) btnProductsPage.classList.add("active");
-  if (url.includes("review-management.html") && btnReviewsPage) btnReviewsPage.classList.add("active");
-  if (url.includes("customization-management.html") && btnCustomizationPage) btnCustomizationPage.classList.add("active");
+  
+  if (url.includes("product-management.html") && btnProducts) {
+    btnProducts.classList.add("active");
+  }
+  if (url.includes("review-management.html") && btnReviews) {
+    btnReviews.classList.add("active");
+  }
+  if (url.includes("customization-management.html") && btnCustomization) {
+    btnCustomization.classList.add("active");
+  }
 
   // Fetch requests
   if (requestsTableBody) fetchCustomizationRequests(requestsTableBody);
