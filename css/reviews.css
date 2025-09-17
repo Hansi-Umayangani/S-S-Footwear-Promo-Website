@@ -635,7 +635,13 @@ main {
   }
 
   .review-title { padding: 4rem 12% 3.5rem; }
-  .review-analysis-box { padding: 2.8rem; font-size: 0.95rem; }
+  .review-analysis-box { 
+    padding: 1rem; 
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; 
+  }
 
   .reviews-container {
   display: flex;
@@ -806,7 +812,7 @@ main {
   .review-title p { font-size: 0.9rem; }
 
   .review-analysis-container { align-items: center; gap: 2rem; }
-  .analysis-left, .analysis-right { max-width: 100%; text-align: left; }
+  .analysis-left, .analysis-right { max-width: 100%; text-align: left; flex: 1 1 100%;}
 
   .review-analysis-box { padding: 1.5rem; font-size: 0.9rem; margin-top: 20px;}
   .reviews-container { 

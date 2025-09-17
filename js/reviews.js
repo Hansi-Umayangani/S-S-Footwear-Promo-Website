@@ -54,6 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // -------- Menu toggle (FIX ADDED) --------
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+  }
+
   // -------- Utility: format "time ago" --------
   function timeAgo(timestamp) {
     if (!timestamp) return "";
