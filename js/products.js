@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const currentPage = window.location.pathname.split("/").pop();
 
-  if (typeof auth !== "undefined") {
+ if (currentPage !== "home.html") {
 
 // -------- Highlight nav link --------
   navLinks.forEach(link => {
@@ -172,12 +172,6 @@ if (userMenu && userDropdown) {
     });
     document.addEventListener("click", (e) => {
       if (!userMenu.contains(e.target)) userDropdown.style.display = "none";
-    });
-  }
-
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
     });
   }
 

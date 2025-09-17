@@ -14,18 +14,10 @@ const btnProducts = document.getElementById("btn-products");
 const btnReviews = document.getElementById("btn-reviews");
 const btnCustomization = document.getElementById("btn-customization");
 
-// ------------------- DROPDOWN -------------------
-if (userMenu && userDropdown) {
-  userMenu.addEventListener("click", () => {
-    userDropdown.style.display = userDropdown.style.display === "block" ? "none" : "block";
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!userMenu.contains(e.target)) userDropdown.style.display = "none";
-  });
-}
-
 // ------------------- AUTH -------------------
+function initAuth() {
+  if (!loginOption || !logoutOption) return;
+
 onAuthStateChanged(auth, (user) => {
   if (loginOption && logoutOption) {
     if (user) {
@@ -39,8 +31,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // ------------------- LOGOUT -------------------
-if (logoutOption) {
-  logoutOption.addEventListener("click", async (e) => {
+logoutOption.addEventListener("click", async (e) => {
     e.preventDefault();
     try {
       await signOut(auth);
@@ -51,8 +42,10 @@ if (logoutOption) {
   });
 }
 
+
 // ------------------- ADMIN NAV HIGHLIGHT & FETCH -------------------
 document.addEventListener("DOMContentLoaded", () => {
+  
   const url = window.location.href;
 
   

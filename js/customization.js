@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const currentPage = window.location.pathname.split("/").pop();
 
-
-
 // -------- Highlight nav link --------
   navLinks.forEach(link => {
     const linkPage = link.getAttribute("href").split("/").pop();
