@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>S&S Footwear</title>
+  <link rel="icon" href="../../assets/favicon.png" type="image/png">
   <link rel="stylesheet" href="../../css/products.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
@@ -124,7 +125,10 @@
 import { auth } from "../../js/firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
-const ADMIN_EMAILS = ["gimhanihansika2020@gmail.com"];
+const ADMIN_EMAILS = [
+    "gimhanihansika2020@gmail.com",
+    "ss01.footwear@gmail.com"
+];
 
 onAuthStateChanged(auth, (user) => {
   if (user && ADMIN_EMAILS.includes(user.email)) {
