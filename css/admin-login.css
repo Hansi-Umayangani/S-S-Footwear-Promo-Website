@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------------- Reset & Base ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -41,7 +41,7 @@ img {
   display: block;
 }
 
-/* ---------------- Navbar / Header ---------------- */
+/* -------------------- Navbar -------------------- */
 .navbar {
   background-color: #4b2e1e;
   color: #FFF9F4;
@@ -56,7 +56,6 @@ img {
   z-index: 1000;
 }
 
-/* Right-side container */
 .nav-right {
   display: flex;
   align-items: center;
@@ -91,18 +90,21 @@ img {
   font-size: clamp(0.85rem, 1.5vw, 1.2rem);
 }
 
+.nav-links a.active {
+    color: #ff7f50;
+    font-weight: bold;
+}
+
 .nav-links a:hover {
   color: #d2a06a;
 }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-/* User Menu */
 .user-menu {
   position: relative;
   display: flex;
@@ -115,7 +117,6 @@ img {
   width: 30px;
 }
 
-/* Dropdown Menu */
 .user-menu .dropdown {
   display: none;
   position: absolute;
@@ -137,9 +138,16 @@ img {
   font-family: 'Open Sans', sans-serif;
 }
 
+.user-menu.active {
+    background-color: rgba(255, 127, 80, 0.2);
+    border-radius: 5px;
+}
+
+
 .user-menu .dropdown a:hover {
   background-color: #d2a06a;
   color: #4b2e1e;
+  border-radius: 5px;
 }
 
 .login-icon {
@@ -314,6 +322,7 @@ img {
 }
 
 /* -------------------- Responsive Breakpoints -------------------- */
+
 /* Large Desktop (>=1200px) */
 @media (min-width: 1200px) {
   body { font-size: 1rem; }

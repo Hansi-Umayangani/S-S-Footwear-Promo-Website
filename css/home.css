@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------------- Reset & Base ---------------- */
 * {
   margin: 0;
   padding: 0;
@@ -41,7 +41,7 @@ img {
   display: block;
 }
 
-/* ---------------- Navbar / Header ---------------- */
+/* ---------------- Navbar ---------------- */
 .navbar {
   background-color: #4b2e1e;
   color: #FFF9F4;
@@ -56,7 +56,6 @@ img {
   z-index: 1000;
 }
 
-/* Right-side container */
 .nav-right {
   display: flex;
   align-items: center;
@@ -89,6 +88,12 @@ img {
   font-weight: 500;
   font-family: 'Crison Text', serif;
   font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+}
+
+.nav-links a.active {
+  color: #d2a06a;
+  font-weight: bold;
+  border-bottom: 2px solid #d2a06a;
 }
 
 .nav-links a:hover {
@@ -405,17 +410,24 @@ section {
   max-width: 1700px;
 }
 
-/* Large Desktop (>=1200px) → 6 cards per row */
-@media (min-width: 1200px) {
+/* Large Desktop (>=1780px) → 6 cards per row */
+@media  (min-width: 1780px) {
   .product-list {
     grid-template-columns: repeat(6, 250px);
+  }
+}
+
+/* Large Desktop (>=1200px) → 6 cards per row */
+@media (min-width: 1200px) and (max-width: 1780px) {
+  .product-list {
+    grid-template-columns: repeat(4, 250px);
   }
 }
 
 /* Desktop / Laptop (992px – 1199px) → 4 cards per row */
 @media (min-width: 992px) and (max-width: 1199px) {
   .product-list {
-    grid-template-columns: repeat(4, 250px);
+    grid-template-columns: repeat(3, 250px);
   }
 }
 
@@ -475,30 +487,6 @@ section {
 .product-card p {
   font-size: clamp(0.85rem, 1.2vw, 1rem);
   line-height: 1.5;
-}
-
-/* ---------------- Small Button ---------------- */
-.btn.small {
-  background: #DDA463;
-  color: black;
-  font-weight: 600;
-  font-size: 0.9rem;
-  font-family: "Open Sans", sans-serif;
-  padding: 0.4rem 1rem;
-  border: none;
-  border-radius: 20px;
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  margin-top: 1.5rem;
-}
-
-.btn.small:hover {
-  background: #cc7818ce;
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
 }
 
 
