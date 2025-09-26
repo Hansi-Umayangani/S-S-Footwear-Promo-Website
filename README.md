@@ -49,3 +49,9 @@
   <li>Shopping cart &amp; secure checkout system.</li>
   <li>Online payment gateway integration.</li>
 </ul>
+
+<h2>Live Demo Links</h2>
+<ul>
+  <li><a href=http://ss-footwear-promo-website.vercel.app>Customer Portal</a></li>
+  <li><a href=https://ss-footwear-promo-website.vercel.app/pages/admin/login.html>Admin Portal</a></li>
+</ul>
